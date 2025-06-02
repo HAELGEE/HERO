@@ -58,4 +58,23 @@ internal class Entity
         }
 
     }
+
+    public static bool LookingIfUserHaveActiveHero()
+    {
+        using(var db = new MyDbContext())
+        {
+            bool iftrue = false;
+            var heroes = db.Hero.Where(h => h.UserId == Program.iUser.Id).ToList();
+
+            foreach(var hero in heroes)
+            {
+                if (hero.ActiveHero)
+                {
+                    iftrue = true;
+                    break;
+                }                
+            }
+            return iftrue;
+        }
+    }
 }

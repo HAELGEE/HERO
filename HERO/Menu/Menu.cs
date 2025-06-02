@@ -104,7 +104,14 @@ public class Menu
                             break;
 
                         case 2:
-                            HeroStatus.CurrentHeroMenu();
+                            if (Entity.LookingIfUserHaveActiveHero())
+                                HeroStatus.CurrentHeroMenu();
+                            else
+                            {
+                                Console.WriteLine(TextCenter.CenterTexts("Ingen vald Hero än"));
+                                Thread.Sleep(1500);
+                            }
+
                             break;
 
                         case 3:
@@ -114,10 +121,9 @@ public class Menu
                                 Entity.GettingAllHerosForUser();
                                 Console.WriteLine(TextCenter.CenterTexts("B för att backa"));
                                 Console.WriteLine(TextCenter.CenterTexts("Vilken Hero vill du välja?"));
-                                Console.WindowWidth = Console.WindowWidth / 2;
-                                string input = Console.ReadLine()!;
+                                string heroChoice = Console.ReadLine()!;
 
-                                if (input.ToLower() == "b")
+                                if (heroChoice.ToLower() == "b")
                                     break;
                                 //Console.GetCursorPosition();
 
