@@ -12,21 +12,38 @@ internal class Armor
         //DropChance();
     }
 
-    // Basic armor saker
     public int Id { get; set; }
-    public string? Name { get; set; }
 
-    // Koppling till Hero
-    public int HeroId { get; set; }
+    // Här kommer Hero saker
+    public int? HeroId { get; set; }
     public virtual Hero? Hero { get; set; }
+
+    // Basic armor saker
+    public string? Name { get; set; }
+    public string? Rarity { get; set; }
+
+    // Attributes till armor
+    public int? Damage { get; set; }
+    public int? ArmorToHero { get; set; }
+    public int? Strength { get; set; }
+    public int? Intelligence { get; set; }
+    public int? Agility { get; set; }
+    public int? Speed { get; set; }
+    public int? Stamina { get; set; }
+    public int? Charm { get; set; }
+    public int? Resistance { get; set; }
+    public int? Lifesteal { get; set; }
+
+    
+
 
     public static void DropChance<T>(T calculateNumber)
     {
-
+        // Här skall beräkningen av droppchancen vara för dropp av olika Rarity av Armor
     }
 
     void GettingRarity<T>(T Rarity)
     {
-
+        // Här tar man den rarityn som blev vald i DropChance
     }
 }

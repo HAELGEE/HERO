@@ -7,9 +7,14 @@ using System.Threading.Tasks;
 namespace HERO.Models;
 internal class User
 {
-    public User()
+    public User(string firstname, string lastname, string email, string password)
     {
         RegisteryDate = DateForRegistery();
+        Firstname = firstname;
+        Lastname = lastname;
+        Email = email;
+        Password = password;
+        IsAdmin = false;
     }
 
     private string DateForRegistery()
@@ -26,7 +31,9 @@ internal class User
     public string? Password { get; set; }
     public string? RegisteryDate { get; set; }
     public bool? IsAdmin { get; set; }
-    public int Logins { get; set; }
+    public int? Logins { get; set; }
+    public bool? IsLoggedIn { get; set; }
+    public string? HeroUsing { get; set; } // Den som är aktiv och används för tillfället 
 
     // Kopplingar till sina Hero
     public virtual ICollection<Hero> Heros { get; set; } = new List<Hero>();
