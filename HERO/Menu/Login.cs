@@ -1,10 +1,12 @@
 ﻿using HERO.Models;
+using HERO.Stuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace HERO.Menu;
 internal class Login
@@ -15,7 +17,8 @@ internal class Login
         {
             Console.Clear();
 
-            Console.Write("Ange Email: ");
+            Color.ChangeColorNewLine(TextCenter.CenterMenu("Ange Email:"), "DarkCyan");
+            Console.SetCursorPosition((Console.WindowWidth - 12) / 2, 1);
             string loginEmail = Console.ReadLine()!;
 
             var user = db.User.Where(u => u.Email == loginEmail)
@@ -28,7 +31,8 @@ internal class Login
 
             if (!string.IsNullOrWhiteSpace(loginEmail) && user != null)
             {
-                Console.Write("Ange lösenord: ");
+                Color.ChangeColorNewLine(TextCenter.CenterMenu("Ange lösenord:"), "DarkCyan");
+                Console.SetCursorPosition((Console.WindowWidth - 8) / 2, 3);
                 string loginPassword = Console.ReadLine()!;
 
                 if (!string.IsNullOrWhiteSpace(loginPassword) && BC.EnhancedVerify(loginPassword, user.Password))
@@ -51,20 +55,20 @@ internal class Login
                         person.Logins++;
                         db.SaveChanges();
 
-                        Console.WriteLine("Du är nu inloggad");
+                        Color.ChangeColorNewLine(TextCenter.CenterMenu("Du är nu inloggad"), "Green");
                         Thread.Sleep(1000);
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Fel lösenord, försök igen");
+                    Color.ChangeColorNewLine(TextCenter.CenterMenu("Fel lösenord, försök igen"), "Red");
                     Thread.Sleep(1500);
                 }
             }
 
             else
             {
-                Console.WriteLine("Inget konto hittades med den mailadressen");
+                Color.ChangeColorNewLine(TextCenter.CenterMenu("Inget konto hittades med den mailadressen"), "Red");
                 Thread.Sleep(1500);
             }
         }

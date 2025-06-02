@@ -100,6 +100,10 @@ public class Menu
                             break;
 
                         case 2:
+                            Admin.AdminMenu();
+                            break;
+
+                        case 3:
                             menu = false;
                             Quit.QuitMessage();
                             break;

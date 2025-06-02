@@ -18,6 +18,7 @@ internal class TextCenter
         // Returnerar den texten som precis blivit centrerad
         return centeredText;
     }
+
     public static string CenterTextss(string text)
     {
         // Räknar ut Console fönstrets bredd och tar bort tar textens längd och delar sedan den på 2
