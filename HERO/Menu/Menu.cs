@@ -27,19 +27,16 @@ public class Menu
                     menuChoice1.Add("\x1b[3mAvsluta\x1b[0m");
 
                 }
-                else if (Program.iUser.IsLoggedIn && Program.iUser.IsAdmin)
-                {
-                    menuChoice1.Add("\u001b[3mSkapa Konto\u001b[0m");
-                    menuChoice1.Add("\x1b[3mLogga ut\x1b[0m");
-                    menuChoice1.Add("\x1b[3mAdmin\x1b[0m");
-                    menuChoice1.Add("\x1b[3mAvsluta\x1b[0m");
-                }
                 else
                 {
-                    menuChoice1.Add("\u001b[3mSkapa Konto\u001b[0m");
+                    menuChoice1.Add("\u001b[3mSkapa Hero\u001b[0m");
                     menuChoice1.Add("\x1b[3mLogga ut\x1b[0m");
+                    if (Program.iUser.IsAdmin)
+                        menuChoice1.Add("\x1b[3mAdmin\x1b[0m");
                     menuChoice1.Add("\x1b[3mAvsluta\x1b[0m");
                 }
+
+
                 Console.Clear();
 
                 WelcomeMessage.StartMessage();
@@ -73,6 +70,7 @@ public class Menu
                     {
                         case 0:
                             Create.CreateUser();
+
                             break;
 
                         case 1:
@@ -90,7 +88,7 @@ public class Menu
                     switch (menuSelecter1)
                     {
                         case 0:
-                            Create.CreateUser();
+                            Create.CreateHero();
                             break;
 
                         case 1:
