@@ -1,4 +1,5 @@
 ﻿using HERO.Models;
+using HERO.Stuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ internal class Entity
         {
             var allUsers = db.User.ToList();
 
-            foreach(var user in allUsers)
+            foreach (var user in allUsers)
             {
                 Console.WriteLine($"ID: {user.Id} - Namn: {user.Firstname!.PadRight(10)} - Efternamn: {user.Lastname} - Email: {user.Email}");
             }
@@ -24,14 +25,37 @@ internal class Entity
 
     public static bool LookingIfHeroExist(string input)
     {
-        using(var db = new MyDbContext())
+        using (var db = new MyDbContext())
         {
-            var allHeros = db.Hero.Where(h => h.Username == input).SingleOrDefault();   
+            var allHeros = db.Hero.Where(h => h.Username == input).SingleOrDefault();
 
-            if(allHeros == null)
+            if (allHeros == null)
                 return false;
-            else 
+            else
                 return true;
         }
+    }
+
+    public static void GettingAllHerosForUser()
+    {
+
+        using (var db = new MyDbContext())
+        {
+            var heros = db.Hero.Where(h => h.UserId == Program.iUser.Id).ToList();
+
+            foreach (var hero in heros)
+            {
+                Console.WriteLine(TextCenter.CenterTexts($"Usernam: {hero.Username}"));
+                Console.WriteLine(TextCenter.CenterTexts($"Level: {hero.Level}"));
+                if (hero.Title != null)
+                    Console.WriteLine(TextCenter.CenterTexts($"Titel: {hero.Title}"));
+                else
+                    Console.WriteLine(TextCenter.CenterTexts($"Titel: Ingen Titel än"));
+                Console.WriteLine(TextCenter.CenterTexts("----------------------------------------"));
+                Console.WriteLine();
+            }
+
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using HERO.Interfaces;
+﻿using HERO.Database_Stuff;
+using HERO.Interfaces;
 using HERO.Models;
 using HERO.Stuff;
 using System;
@@ -107,7 +108,20 @@ public class Menu
                             break;
 
                         case 3:
+                            while (true)
+                            {
+                                Console.Clear();
+                                Entity.GettingAllHerosForUser();
+                                Console.WriteLine(TextCenter.CenterTexts("B för att backa"));
+                                Console.WriteLine(TextCenter.CenterTexts("Vilken Hero vill du välja?"));
+                                Console.WindowWidth = Console.WindowWidth / 2;
+                                string input = Console.ReadLine()!;
 
+                                if (input.ToLower() == "b")
+                                    break;
+                                //Console.GetCursorPosition();
+
+                            }
                             break;
 
                         case 4:
