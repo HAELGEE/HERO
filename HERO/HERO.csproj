@@ -17,6 +17,10 @@
     </PackageReference>
   </ItemGroup>
 
+	<ItemGroup>
+		<Using Include="BCrypt.Net.BCrypt" Alias="BC" />
+	</ItemGroup>
+	
   <ItemGroup>
     <Folder Include="Migrations\" />
   </ItemGroup>

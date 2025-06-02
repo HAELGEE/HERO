@@ -1,11 +1,12 @@
-﻿using System;
+﻿using HERO.Stuff;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace HERO.Stuff;
+namespace HERO.Menu;
 internal class WelcomeMessage
 {
     public static void StartMessage()
