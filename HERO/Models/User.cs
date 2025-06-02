@@ -25,6 +25,8 @@ internal class User
     public string? Email { get; set; }
     public string? Password { get; set; }
     public string? RegisteryDate { get; set; }
+    public bool? IsAdmin { get; set; }
+    public int Logins { get; set; }
 
     // Kopplingar till sina Hero
     public virtual ICollection<Hero> Heros { get; set; } = new List<Hero>();
