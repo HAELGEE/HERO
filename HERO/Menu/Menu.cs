@@ -108,6 +108,7 @@ public class Menu
                                 HeroStatus.CurrentHeroMenu();
                             else
                             {
+                                Console.WriteLine();
                                 Console.WriteLine(TextCenter.CenterTexts("Ingen vald Hero än"));
                                 Thread.Sleep(1500);
                             }
