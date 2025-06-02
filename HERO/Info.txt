@@ -1,3 +1,7 @@
 
 
 Bygg vidare
+
+Lägga till UserId vid skapande av HERO
+Lägga till 0 XP vid skapande samt
+Lägga till level 1 vid skapande
