@@ -1,4 +1,5 @@
 ﻿using HERO.Models;
+using HERO.Stuff;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -6,35 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HERO.Stuff;
+namespace HERO.Menu;
 internal class HeroStatus
 {
-    public void StatusMenu()
+    public static void CurrentHeroMenu()
     {
         using (var db = new MyDbContext())
         {
             var user = db.User.Where(x => x.IsLoggedIn == true && x.HeroUsing == Program.loggedInUsername).Select(x => x.HeroUsing).SingleOrDefault();
-            var hero = db.Hero.Where(x => x.Username == user)
-                .Select(h => new
-                {
-                    h.Username,
-                    h.Title,
-                    h.Level,
-                    h.CurrentXP,
-                    h.CurrentHealth,
-                    h.MaxHealth,
-                    h.Gold,
-                    h.Strength,
-                    h.Agility,
-                    h.Intelligence,
-                    h.Stamina,
-                    h.Speed,
-                    h.Armor,
-                    h.Charm,
-                    h.Lifesteal,
-                    h.Damage,
-                    h.MaxXP
-                })
+            var hero = db.Hero.Where(x => x.Username == user)  
+                .ToList()
                 .SingleOrDefault();
 
            
@@ -50,12 +32,12 @@ internal class HeroStatus
             Console.Write(TextCenter.CenterHpText($"HP:"));
 
             if (hero.CurrentHealth < hero.MaxHealth)
-                Color.ChangeColor(hero.CurrentHealth, "Red");
+                Stuff.Color.ChangeColor(hero.CurrentHealth, "Red");
             else
-                Color.ChangeColor(hero.CurrentHealth, "Green");
+                Stuff.Color.ChangeColor(hero.CurrentHealth, "Green");
             Console.ResetColor();
             Console.Write(" av ");
-            Color.ChangeColor(hero.MaxHealth, "Green");
+            Stuff.Color.ChangeColor(hero.MaxHealth, "Green");
 
             Console.WriteLine(TextCenter.CenterTexts("Styrka: " + hero.Strength));
             Console.WriteLine(TextCenter.CenterTexts("Agility: " + hero.Agility));

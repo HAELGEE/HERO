@@ -47,6 +47,9 @@ internal class Login
                         Program.iUser.IsLoggedIn = true;
                         db.SaveChanges();
 
+                        Program.iUser.Id = person.Id;
+                        db.SaveChanges();
+
                         if (person.IsAdmin)
                         {
                             Program.iUser.IsAdmin = true;

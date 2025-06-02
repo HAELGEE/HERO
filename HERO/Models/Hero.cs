@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 namespace HERO.Models;
 internal class Hero
 {
-    // Basic saker för ett konto
+    // Basic saker för hero konto
     public int Id { get; set; }
-  
+    public bool ActiveHero { get; set; }
+
 
     // Kopplingar till andra klasser
     public int? UserId { get; set; }
@@ -24,23 +25,23 @@ internal class Hero
 
     // Hero attributs
     public string? Username { get; set; } // Username på HERO
-    public int? Level { get; set; }
-    public int? CurrentXP { get; set; }
-    public int? MaxXP { get; set; }
-    public int? CurrentHealth { get; set; }
-    public int? MaxHealth { get; set; }
-    public int? Damage { get; set; }
-    public int? Armor { get; set; }
-    public int? Strength { get; set; }
-    public int? Intelligence { get; set; }
-    public int? Agility { get; set; }
-    public int? Speed { get; set; }
-    public int? Stamina { get; set; }
-    public int? Charm { get; set; }
-    public int? Resistance { get; set; }
-    public int? Lifesteal { get; set; }
+    public int? Level { get; set; } = 1;
+    public int? CurrentXP { get; set; } = 0;
+    public int? MaxXP { get; set; } = 100;
+    public int? CurrentHealth { get; set; } = 100;
+    public int? MaxHealth { get; set; } = 100;
+    public int? Damage { get; set; } = 10;
+    public int? Armor { get; set; } = 2;
+    public int? Strength { get; set; } = 2;
+    public int? Intelligence { get; set; } = 2;
+    public int? Agility { get; set; } = 2;
+    public int? Speed { get; set; } = 2;
+    public int? Stamina { get; set; } = 2;
+    public int? Charm { get; set; } = 2;
+    public int? Resistance { get; set; } = 0;
+    public int? Lifesteal { get; set; } = 0;
     public string? Title { get; set; }
-    public int? Gold { get; set; }
+    public int? Gold { get; set; } = 0;
 
     // Hero Titles
     public int? OrcSlain { get; set; }

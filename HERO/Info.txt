@@ -2,6 +2,4 @@
 
 Bygg vidare
 
-Lägga till UserId vid skapande av HERO
-Lägga till 0 XP vid skapande samt
-Lägga till level 1 vid skapande
+När man kollar sin Heros information skall man kolla efter Sin nuvarande Aktiva Hero och efter User id kopplat till den Hero

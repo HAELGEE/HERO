@@ -148,6 +148,7 @@ internal class Create
                         db.Hero.Add(new Hero()
                         {
                             Username = heroName,
+                            UserId = Program.iUser.Id
                         });
 
                         Color.ChangeColor(TextCenter.CenterTexts("Din Hero skapades framgångsrikt"), "Green");

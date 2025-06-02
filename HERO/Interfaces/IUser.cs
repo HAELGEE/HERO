@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace HERO.Interfaces;
 internal interface IUser
 {
+    public int Id { get; set; }
     public bool IsLoggedIn { get; set; }
     public bool IsAdmin { get; set; }
 }
