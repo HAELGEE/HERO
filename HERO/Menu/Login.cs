@@ -25,7 +25,8 @@ internal class Login
                 .Select(u => new
                 {
                     u.Email,
-                    u.Password
+                    u.Password,
+                    u.Id
                 })
                 .SingleOrDefault();
 
@@ -49,6 +50,13 @@ internal class Login
 
                         Program.iUser.Id = person.Id;
                         db.SaveChanges();
+
+                        var resetActiveHero = db.Hero.Where(h => h.UserId == user.Id).ToList();
+
+                        foreach(var hero in resetActiveHero)
+                        {
+                            hero.ActiveHero = false;
+                        }
 
                         if (person.IsAdmin)
                         {
