@@ -17,6 +17,7 @@ internal class MyDbContext : DbContext
     public DbSet<MeleeSkill> MeleeSkill { get; set; }
     public DbSet<RangeSkill> RangeSkill { get; set; }
     public DbSet<MageSkill> MageSkill { get; set; }
+    public DbSet<Title> Title { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

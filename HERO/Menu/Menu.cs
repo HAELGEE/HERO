@@ -2,7 +2,9 @@
 using HERO.Interfaces;
 using HERO.Models;
 using HERO.Stuff;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,10 +37,10 @@ public class Menu
                     menuChoice1.Add("\x1b[3mHero Information\x1b[0m");
                     menuChoice1.Add("\x1b[3mSpara/Ladda Hero\x1b[0m");
                     menuChoice1.Add("\x1b[3mSpela\x1b[0m");
+                    menuChoice1.Add("\x1b[3mAvsluta\x1b[0m");
 
                     if (Program.iUser.IsAdmin)
                         menuChoice1.Add("\x1b[3mAdmin\x1b[0m");
-                    menuChoice1.Add("\x1b[3mAvsluta\x1b[0m");
                 }
 
 
@@ -47,7 +49,7 @@ public class Menu
                 WelcomeMessage.StartMessage();
 
                 for (int i = 0; i < menuChoice1.Count; i++)
-                {                    
+                {
                     if (i == menuSelecter1)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
@@ -97,11 +99,17 @@ public class Menu
                             break;
 
                         case 1:
-                            User user = new User();
-                            user.IsLoggedIn = false;
-                            Program.iUser.IsLoggedIn = false;
-                            Program.iUser.IsAdmin = false;
-                            db.SaveChanges();
+
+                            var user = db.User.Where(u => u.Id == Program.iUser.Id).SingleOrDefault();
+
+                            if (user != null)
+                            {
+                                user!.IsLoggedIn = false;
+                                Program.iUser.IsLoggedIn = false;
+                                Program.iUser.IsAdmin = false;
+                                db.SaveChanges();
+                            }
+
                             break;
 
                         case 2:
@@ -131,7 +139,7 @@ public class Menu
 
                                 for (int i = 0; i < menuChoice2.Count; i++)
                                 {
-                                    if(i == 0)
+                                    if (i == 0)
                                         Console.WriteLine($"\n\n\n\n\n\n\n\n");
                                     if (i == menuSelecter2)
                                     {
@@ -180,15 +188,97 @@ public class Menu
                             break;
 
                         case 5:
-                            Admin.AdminMenu();
-                            break;
-
-                        case 6:
                             menu = false;
                             Quit.QuitMessage();
                             break;
+
+                        case 6:
+                            Admin.AdminMenu();
+                            break;
+
                     }
                 }
+            }
+        }
+    }
+    public static void TitleMenu()
+    {
+        while (true)
+        {
+            using (var db = new MyDbContext())
+            {
+                var hero = db.Hero.Where(h => h.UserId == Program.iUser.Id).SingleOrDefault();
+                var titles = db.Title.Where(h => h.HeroId == hero.Id).ToList();
+
+
+                Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n");
+                if (titles.Count == 0)
+                {
+                    Console.WriteLine(TextCenter.CenterTexts("Du har inga Titlar ännu"));
+                    Console.WriteLine(TextCenter.CenterTexts("Tryck någon knapp för att gå bakåt"));
+                    Console.ReadKey();
+                    break;
+                }
+                else
+                {
+                    foreach (var title in titles)
+                    {
+                        Console.WriteLine(TextCenter.CenterTexts($"{title.Name}"));
+                    }
+                    Console.WriteLine("hej");
+                }
+            }
+        }
+    }
+    public static void HealingMenu()
+    {
+        using (var db = new MyDbContext())
+        {
+            var hero = db.Hero.Where(h => h.ActiveHero == true).SingleOrDefault();
+
+            if (hero.CurrentHealth == hero.MaxHealth)
+            {
+                Console.WriteLine(TextCenter.CenterTexts("Din hjälte har redan fullt HP"));
+            }
+            else
+            {
+                Console.WriteLine(TextCenter.CenterTexts("Din hjälte börjar Meditera för att återställa HP"));
+                while (hero.CurrentHealth < hero.MaxHealth)
+                {
+                    if (hero.CurrentHealth < hero.MaxHealth * 0.25)    // När hjälten har mindre än 25% av maxHP
+                    {
+                        hero.CurrentHealth += 10;
+                        Console.WriteLine(TextCenter.CenterTexts($"Nuvarande hp: {hero.CurrentHealth}"));
+                        Thread.Sleep(300);
+                    }
+                    else if (hero.CurrentHealth < hero.MaxHealth * 0.50)      // När hjälten har mindre än 50% av maxHP
+                    {
+                        hero.CurrentHealth += 10;
+                        Console.WriteLine(TextCenter.CenterTexts($"Nuvarande hp: {hero.CurrentHealth}"));
+                        Thread.Sleep(450);
+                    }
+                    else if (hero.CurrentHealth < hero.MaxHealth * 0.75)      // När hjälten har mindre än 75% av maxHP
+                    {
+                        hero.CurrentHealth += 10;
+                        Console.WriteLine(TextCenter.CenterTexts($"Nuvarande hp: {hero.CurrentHealth}"));
+                        Thread.Sleep(700);
+                    }
+                    else    // När hjälten har mindre än 100% av maxHP
+                    {
+                        hero.CurrentHealth += 10;
+                        if(hero.CurrentHealth > hero.MaxHealth)
+                            hero.CurrentHealth = hero.MaxHealth;
+
+                        Console.WriteLine(TextCenter.CenterTexts($"Nuvarande hp: {hero.CurrentHealth}"));
+                        Thread.Sleep(850);
+                    }
+                }
+
+                hero.CurrentHealth = hero.MaxHealth;
+                db.SaveChanges();
+
+                Console.WriteLine(TextCenter.CenterTexts($"Din hjälte har {hero.CurrentHealth}hp av {hero.CurrentHealth}hp"));
+                Thread.Sleep(850);
             }
         }
     }

@@ -17,8 +17,10 @@ internal class Login
         {
             Console.Clear();
 
-            Color.ChangeColorNewLine(TextCenter.CenterMenu("Ange Email:"), "DarkCyan");
-            Console.SetCursorPosition((Console.WindowWidth - 12) / 2, 1);
+            Console.WriteLine("\n\n\n\n\n\n\n\n\n");
+
+
+            Color.ChangeColor(TextCenter.CenterMenu("Ange Email: "), "DarkCyan");
             string loginEmail = Console.ReadLine()!;
 
             var user = db.User.Where(u => u.Email == loginEmail)
@@ -32,8 +34,7 @@ internal class Login
 
             if (!string.IsNullOrWhiteSpace(loginEmail) && user != null)
             {
-                Color.ChangeColorNewLine(TextCenter.CenterMenu("Ange lösenord:"), "DarkCyan");
-                Console.SetCursorPosition((Console.WindowWidth - 8) / 2, 3);
+                Color.ChangeColor(TextCenter.CenterMenu("Ange lösenord: "), "DarkCyan");                
                 string loginPassword = Console.ReadLine()!;
 
                 if (!string.IsNullOrWhiteSpace(loginPassword) && BC.EnhancedVerify(loginPassword, user.Password))
@@ -44,6 +45,16 @@ internal class Login
 
                     if (person!.Email!.ToLower() == loginEmail.ToLower())
                     {
+                        var users = db.User.ToList();
+
+                        foreach (var user1 in users)
+                        {
+                            if (user1.Email != loginEmail)
+                                user1.IsLoggedIn = false;
+                        }
+                        db.SaveChanges();
+
+
                         person.IsLoggedIn = true;
                         Program.iUser.IsLoggedIn = true;
                         db.SaveChanges();
@@ -53,7 +64,7 @@ internal class Login
 
                         var resetActiveHero = db.Hero.Where(h => h.UserId == user.Id).ToList();
 
-                        foreach(var hero in resetActiveHero)
+                        foreach (var hero in resetActiveHero)
                         {
                             hero.ActiveHero = false;
                         }
@@ -66,6 +77,8 @@ internal class Login
                         person.Logins++;
                         db.SaveChanges();
 
+
+                        Console.WriteLine();
                         Color.ChangeColorNewLine(TextCenter.CenterMenu("Du är nu inloggad"), "Green");
                         Thread.Sleep(1000);
                     }

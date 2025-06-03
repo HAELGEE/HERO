@@ -22,22 +22,24 @@ internal class Create
                 string email = "";
                 string password = "";
                 string password2 = "";
-                int height = 0;
+                //int height = 0;
+
+                Console.WriteLine("\n\n\n\n\n\n\n");
 
                 Console.WriteLine(TextCenter.CenterTexts("B för att backa"));
 
                 while (true)
                 {
-                    height += 2;
-                    Console.WriteLine(TextCenter.CenterTexts("Förnamn: "));
-                    Console.SetCursorPosition((Console.WindowWidth - 3) / 2, height);
+                    //height += 2;
+                    Console.Write(TextCenter.CenterTexts("Förnamn: "));
+                    //Console.SetCursorPosition((Console.WindowWidth - 3) / 2, height);
                     firstName = Console.ReadLine()!;
                     if (!string.IsNullOrWhiteSpace(firstName) || firstName.ToLower() == "b")
                         break;
                     else
                     {
                         Console.WriteLine(TextCenter.CenterTexts("Kan inte vara tomt"));
-                        height += 1;
+                        //height += 1;
                     }
                 }
                 if (firstName.ToLower() == "b")
@@ -45,15 +47,15 @@ internal class Create
 
                 while (true)
                 {
-                    height += 2;
-                    Console.WriteLine(TextCenter.CenterTexts("Efternamn: "));
-                    Console.SetCursorPosition((Console.WindowWidth - 2) / 2, height);
+                    //height += 2;
+                    Console.Write(TextCenter.CenterTexts("Efternamn: "));
+                    //Console.SetCursorPosition((Console.WindowWidth - 2) / 2, height);
                     lastName = Console.ReadLine()!;
                     if (!string.IsNullOrWhiteSpace(lastName) || lastName.ToLower() == "b")
                         break;
                     else
                     {
-                        height += 1;
+                        //height += 1;
                         Console.WriteLine(TextCenter.CenterTexts("Kan inte vara tomt"));
                     }
                 }
@@ -62,15 +64,15 @@ internal class Create
 
                 while (true)
                 {
-                    height += 2;
-                    Console.WriteLine(TextCenter.CenterTexts("Email: "));
-                    Console.SetCursorPosition((Console.WindowWidth - 12) / 2, height);
+                    //height += 2;
+                    Console.Write(TextCenter.CenterTexts("Email: "));
+                    //Console.SetCursorPosition((Console.WindowWidth - 12) / 2, height);
                     email = Console.ReadLine()!;
                     if (!string.IsNullOrWhiteSpace(email) || email.ToLower() == "b")
                         break;
                     else
                     {
-                        height += 1;
+                        //height += 1;
                         Console.WriteLine(TextCenter.CenterTexts("Kan inte vara tomt"));
                     }
                 }
@@ -79,16 +81,16 @@ internal class Create
 
                 while (true)
                 {
-                    height += 2;
-                    Console.WriteLine(TextCenter.CenterTexts("Lösenord: "));
-                    Console.SetCursorPosition((Console.WindowWidth - 8) / 2, height);
+                    //height += 2;
+                    Console.Write(TextCenter.CenterTexts("Lösenord: "));
+                    //Console.SetCursorPosition((Console.WindowWidth - 8) / 2, height);
                     password = Console.ReadLine()!;
 
                     if (!string.IsNullOrWhiteSpace(password) || password.ToLower() == "b")
                         break;
                     else
                     {
-                        height += 1;
+                        //height += 1;
                         Console.WriteLine(TextCenter.CenterTexts("Kan inte vara tomt"));
                     }
                 }
@@ -97,9 +99,9 @@ internal class Create
 
                 while (true)
                 {
-                    height += 2;
-                    Console.WriteLine(TextCenter.CenterTexts("Lösenord igen: "));
-                    Console.SetCursorPosition((Console.WindowWidth - 8) / 2, height);
+                    //height += 2;
+                    Console.Write(TextCenter.CenterTexts("Lösenord igen: "));
+                    //Console.SetCursorPosition((Console.WindowWidth - 8) / 2, height);
                     password2 = Console.ReadLine()!;
 
                     if (password == password2 || password2.ToLower() == "b")
@@ -112,7 +114,7 @@ internal class Create
                     }
                     else
                     {
-                        height += 1;
+                        //height += 1;
                         Console.WriteLine(TextCenter.CenterTexts("Du angav inte samma lösenord, fösök igen!"));
                     }
                 }

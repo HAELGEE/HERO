@@ -22,6 +22,7 @@ internal class Hero
     public virtual ICollection<MageSkill>? MageSkill { get; set; } = new List<MageSkill>();
     public virtual ICollection<MeleeSkill>? MeleeSkill { get; set; } = new List<MeleeSkill>(); 
     public virtual ICollection<RangeSkill>? RangeSkill { get; set; } = new List<RangeSkill>();
+    public virtual ICollection<Title>? Titles { get; set; } = new List<Title>();
 
     // Hero attributs
     public string? Username { get; set; } // Username på HERO

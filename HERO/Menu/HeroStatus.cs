@@ -19,6 +19,7 @@ internal class HeroStatus
             var hero = db.Hero.Where(x => x.ActiveHero == true && x.UserId == Program.iUser.Id)
                 .SingleOrDefault();
 
+            Console.WriteLine("\n\n\n");
 
             Console.WriteLine(TextCenter.CenterTexts("==========================================================="));
             Console.WriteLine(TextCenter.CenterTexts($"Ditt namn på din Hero: {hero.Username}\n"));

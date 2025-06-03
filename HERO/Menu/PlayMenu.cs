@@ -1,4 +1,5 @@
-﻿using HERO.Models;
+﻿using HERO.Database_Stuff;
+using HERO.Models;
 using HERO.Stuff;
 using System;
 using System.Collections;
@@ -21,7 +22,7 @@ internal class PlayMenu
             "Kolla hittade föremål",
             "Öppna Shopen",
             "Meditera (Heala din hjälte)",
-            "Dungeons",            
+            "Dungeons",
             "Backa"
             };
         int menuSelecter = 0;
@@ -66,9 +67,65 @@ internal class PlayMenu
             {
                 switch (menuSelecter)
                 {
-                    
+                    case 0:
+                        Console.Clear();
+                        if (Entity.LookingIfUserHaveActiveHero())
+                            HeroStatus.CurrentHeroMenu();
+                        else
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine(TextCenter.CenterTexts("Ingen vald Hero än"));
+                            Thread.Sleep(1500);
+                        }
+                        break;
 
-                    case 10:                        
+                    case 1:
+                        Console.Clear();
+                        //"Roama runt och Attackera mobs"
+
+                        break;
+
+                    case 2:
+                        //"Titlar"
+                        Console.Clear();
+
+                        Menu.TitleMenu();
+
+                        break;
+
+                    case 3:
+                        Console.Clear();
+                        //"Utrustade föremål"
+
+                        break;
+
+                    case 4:
+                        Console.Clear();
+                        //"Kolla hittade föremål"
+
+                        break;
+
+                    case 5:
+                        Console.Clear();
+                        //"Öppna Shopen"
+
+                        break;
+
+                    case 6:
+                        //"Meditera (Heala din hjälte)"
+                        Console.Clear();
+                        Menu.HealingMenu();
+
+                        break;
+
+                    case 7:
+                        Console.Clear();
+                        //"Dungeons"   
+
+                        break;
+
+                    case 8:
+                        Console.Clear();
                         spel = false;
                         break;
                 }

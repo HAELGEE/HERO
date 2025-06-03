@@ -1,4 +1,5 @@
-﻿using HERO.Stuff;
+﻿using HERO.Models;
+using HERO.Stuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,19 @@ internal class Quit
 {
     public static void QuitMessage()
     {
-        Console.Clear();
-        Console.WriteLine(TextCenter.CenterTexts("Tack för att du använder detta programmet, nu avslutas programmet"));
-        Thread.Sleep(1000);
+        using (var db = new MyDbContext())
+        {
+            var user = db.User.Where(u => u.Id == Program.iUser.Id).SingleOrDefault();
+
+            if (user != null)
+            {
+                user!.IsLoggedIn = false;
+                db.SaveChanges();
+            }
+
+            Console.Clear();
+            Console.WriteLine(TextCenter.CenterTexts("Tack för att du använder detta programmet, nu avslutas programmet"));
+            Thread.Sleep(1000);
+        }
     }
 }

@@ -13,7 +13,7 @@ internal class WelcomeMessage
     {
         Console.WriteLine();
         Console.WriteLine();
-        Console.WriteLine(TextCenter.CenterTexts2("\x1b[3m-<The Game>-\x1b[0m"));
+        Console.WriteLine(TextCenter.CenterTexts2("\x1b[3m~<The Game>~\x1b[0m"));
         Console.WriteLine(TextCenter.CenterTexts(@"          _____                    _____                    _____                   _______         "));
         Console.WriteLine(TextCenter.CenterTexts(@"         /\    \                  /\    \                  /\    \                 /::\    \        "));
         Console.WriteLine(TextCenter.CenterTexts(@"        /::\____\                /::\    \                /::\    \               /::::\    \       "));
