@@ -225,8 +225,53 @@ public class Menu
                     {
                         Console.WriteLine(TextCenter.CenterTexts($"{title.Name}"));
                     }
-                    Console.WriteLine("hej");
+                    Console.WriteLine("\nHar inte byggt klart detta än. Skall använda pilarna för att välja!");
+                    Console.WriteLine("Tryck b för bakåt");
+                    string input = Console.ReadLine()!;
+                    if (input.ToLower() == "b")
+                        break;
                 }
+            }
+        }
+    }
+    public static void LookingTitle()
+    {
+        using (var db = new MyDbContext())
+        {
+            // Kontroll så man är inne på rätt Hero            
+            var user = db.Hero.Where(u => u.UserId == Program.iUser.Id).SingleOrDefault();
+            var titles = db.Title.Where(t => t.HeroId == user!.Id).ToList();
+
+            if (user.OrcSlain == 500)
+            {
+                AddingTitle("Orc");
+            }
+            else if (user.ElfSlain == 500)
+            {
+                AddingTitle("Elf");
+            }
+            else if (user.GhostSlain == 500)
+            {
+                AddingTitle("Ghost");
+            }            
+        }
+    }
+    static void AddingTitle(string input)
+    {
+        using (var db = new MyDbContext())
+        {
+            var user = db.Hero.Where(u => u.UserId == Program.iUser.Id).SingleOrDefault();
+            var titles = db.Title.Where(t => t.HeroId == user!.Id && t.Name!.Contains(input)).SingleOrDefault();
+
+
+            if (titles == null)
+            {
+                db.Title.Add(new Title
+                {
+                    HeroId = Program.iUser.Id,
+                    Name = $"{input} Slayer"
+                });
+                db.SaveChanges();
             }
         }
     }
@@ -234,11 +279,14 @@ public class Menu
     {
         using (var db = new MyDbContext())
         {
+            Console.Clear();
             var hero = db.Hero.Where(h => h.ActiveHero == true).SingleOrDefault();
 
             if (hero.CurrentHealth == hero.MaxHealth)
             {
+                Console.WriteLine("\n\n\n\n\n\n\n\n\n\n");
                 Console.WriteLine(TextCenter.CenterTexts("Din hjälte har redan fullt HP"));
+                Thread.Sleep(850);
             }
             else
             {

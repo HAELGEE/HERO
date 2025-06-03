@@ -33,6 +33,7 @@ internal class PlayMenu
 
         while (spel)
         {
+            Menu.LookingTitle(); // Till för att kolla om man dödat tillräcklig för att uppnå Titlar
 
             Console.Clear();
             Console.WriteLine();
@@ -113,8 +114,7 @@ internal class PlayMenu
                         break;
 
                     case 6:
-                        //"Meditera (Heala din hjälte)"
-                        Console.Clear();
+                        //"Meditera (Heala din hjälte)"                        
                         Menu.HealingMenu();
 
                         break;

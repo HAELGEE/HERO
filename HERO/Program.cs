@@ -14,8 +14,8 @@ namespace HERO
         {
             using (var db = new MyDbContext())
             {
-                //Menu.Menu.StartMenu();
-                Attack.Attacking();
+                Menu.Menu.StartMenu();
+                //Attack.Attacking();
 
             }
         }
