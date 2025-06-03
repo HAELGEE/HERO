@@ -13,4 +13,14 @@ internal class Title
     public virtual Hero? Hero { get; set; }
 
     public string? Name { get; set; }
+
+    public static void AddingTitle(string input)
+    {
+        using (var db = new MyDbContext())
+        {
+            Enemy enemies = new Enemy();
+
+            
+        }
+    }
 }

@@ -11,6 +11,7 @@ internal class Enemy
     public int Id { get; set; }
     public string? Name { get; set; }
     public string? Class { get; set; }
+    public string? Subclass { get; set; }
     public string? Weakness { get; set; }
 
     public int? Level { get; set; } = 1;
@@ -24,9 +25,9 @@ internal class Enemy
     public int? Agility { get; set; } = 2;
     public int? Speed { get; set; } = 2;
     public int? Stamina { get; set; } = 2;
-    public int? Charm { get; set; } = 2;
+    public int? Charm { get; set; } = 0;
     public int? Resistance { get; set; } = 0;
-    public int? Lifesteal { get; set; } = 0;
+    public int? Lifesteal { get; set; } = 0; // står det 13 så menas det 13% av totala skadan som görs
 
     
 }
@@ -41,6 +42,8 @@ internal class Orc : Enemy // Klass
 
 internal class Grunt : Orc // TANK
 {
+    public string? Subclass { get; set; } = "Grunt";
+
     public string? Name = $"Grunt - {Menu.Menu.OrcName()}";
 }
 

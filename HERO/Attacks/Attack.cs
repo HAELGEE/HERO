@@ -17,5 +17,17 @@ internal class Attack
         Console.WriteLine("Skada: " + goblin.Damage);   
         Console.WriteLine("Namn: "+ goblin.Name);
         Console.WriteLine($"Klass: {goblin.Class}");
+        using(var db = new MyDbContext())
+        {
+            var enemies = db.Enemy.ToList();
+
+            foreach(var enemy in enemies)
+            {
+                //enemy.
+                //Console.WriteLine(enemy.);
+            }
+
+        }
+        
     }
 }

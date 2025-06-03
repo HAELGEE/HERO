@@ -40,7 +40,7 @@ internal class Hero
     public int? Stamina { get; set; } = 2;
     public int? Charm { get; set; } = 2;
     public int? Resistance { get; set; } = 0;
-    public int? Lifesteal { get; set; } = 0;
+    public int? Lifesteal { get; set; } = 0;  // står det 13 så menas det 13% av totala skadan som görs
     public string? Title { get; set; }
     public int? Gold { get; set; } = 0;
 
