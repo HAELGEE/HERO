@@ -169,78 +169,89 @@ internal class Create
         }
     }
 
-    public static void CreateEnemies()
-    {
-        using(var db = new MyDbContext())
-        {
-            //klasser
-            db.Enemy.Add(new Orc()
-            {
-                Class = "Orc"                
-            });
 
-            db.Enemy.Add(new Elf()
-            {
-                Class = "Elf"
-            });
+    //public static void CreateEnemyClass()
+    //{
+    //    using (var db = new MyDbContext())
+    //    {
+            
+    //    }
+    //}
+    //public static void CreateEnemies()
+    //{
+    //    using(var db = new MyDbContext())
+    //    {
+    //        //klasser
+    //        db.Enemy.Add(new Orc()
+    //        {
+    //            Class = "Orc",
+    //            ClassId = 1
+    //        });
 
-            db.Enemy.Add(new Ghost()
-            {
-                Class = "Ghost"
-            });
+    //        db.Enemy.Add(new Elf()
+    //        {
+    //            Class = "Elf",
+    //            ClassId = 2
+    //        });
 
+    //        db.Enemy.Add(new Ghost()
+    //        {
+    //            Class = "Ghost",
+    //            ClassId = 3
+    //        });
+    //        db.SaveChanges();
 
-            // Orc
-            db.Enemy.Add(new Grunt()
-            {
-                Id = 1,
-                Subclass = "Grunt"
-            });
-            db.Enemy.Add(new Shaman()
-            {
-                Id = 1,
-                Subclass = "Shaman"
-            });
-            db.Enemy.Add(new Goblin()
-            {
-                Id = 1,
-                Subclass = "Goblin"
-            });
+    //        // Orc
+    //        db.Enemy.Add(new Grunt()
+    //        {
+    //            Id = 1,
+    //            Subclass = "Grunt"
+    //        });
+    //        db.Enemy.Add(new Shaman()
+    //        {
+    //            Id = 1,
+    //            Subclass = "Shaman"
+    //        });
+    //        db.Enemy.Add(new Goblin()
+    //        {
+    //            Id = 1,
+    //            Subclass = "Goblin"
+    //        });
 
-            // Elf
-            db.Enemy.Add(new Tharion()
-            {
-                Id = 2,
-                Subclass = "Tharion"
-            });
-            db.Enemy.Add(new Tharion()
-            {
-                Id = 2,
-                Subclass = "Tharion"
-            });
-            db.Enemy.Add(new Sylvestra()
-            {
-                Id = 2,
-                Subclass = "Sylvestra"
-            });
+    //        // Elf
+    //        db.Enemy.Add(new Tharion()
+    //        {
+    //            Id = 2,
+    //            Subclass = "Tharion"
+    //        });
+    //        db.Enemy.Add(new Tharion()
+    //        {
+    //            Id = 2,
+    //            Subclass = "Tharion"
+    //        });
+    //        db.Enemy.Add(new Sylvestra()
+    //        {
+    //            Id = 2,
+    //            Subclass = "Sylvestra"
+    //        });
 
-            // Ghost
-            db.Enemy.Add(new Gravemourn()
-            {
-                Id = 3,
-                Subclass = "Gravemourn"
-            });
-            db.Enemy.Add(new Hauntress()
-            {
-                Id = 3,
-                Subclass = "Hauntress"
-            });
-            db.Enemy.Add(new Wraithon()
-            {
-                Id = 3,
-                Subclass = "Wraithon"
-            });
-            db.SaveChanges();
-        }
-    }
+    //        // Ghost
+    //        db.Enemy.Add(new Gravemourn()
+    //        {
+    //            Id = 3,
+    //            Subclass = "Gravemourn"
+    //        });
+    //        db.Enemy.Add(new Hauntress()
+    //        {
+    //            Id = 3,
+    //            Subclass = "Hauntress"
+    //        });
+    //        db.Enemy.Add(new Wraithon()
+    //        {
+    //            Id = 3,
+    //            Subclass = "Wraithon"
+    //        });
+    //        db.SaveChanges();
+    //    }
+    //}
 }

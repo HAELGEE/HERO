@@ -36,24 +36,35 @@ internal class Enemy
 
 internal class Orc : Enemy // Klass
 {
-    public string? Class = "Orc";
-    public string? Weakness { get; set; }
+    public Orc()
+    {
+        Class = "Orc";
+        //Weakness = 
+    }
 }
 
 internal class Grunt : Orc // TANK
 {
-    public string? Subclass { get; set; } = "Grunt";
-
-    public string? Name = $"Grunt - {Menu.Menu.OrcName()}";
+    public Grunt()
+    {
+        Subclass = "Grunt";
+        Name = $"Grunt - {Menu.Menu.OrcName()}";
+    }    
 }
 
 internal class Shaman : Orc // Healer
 {
-    public string? Name = $"Shaman - {Menu.Menu.OrcName()}";
+    public Shaman()
+    {
+        Name = $"Shaman - {Menu.Menu.OrcName()}";
+    }
 }
 internal class Goblin : Orc // DPS
 {
-    public string? Name = $"Goblin - {Menu.Menu.OrcName()}";
+    public Goblin()
+    {
+        Name = $"Goblin - {Menu.Menu.OrcName()}";
+    }
 }
 
 
@@ -63,22 +74,34 @@ internal class Goblin : Orc // DPS
 
 internal class Elf : Enemy // Klass
 {
-    public string? Class = "Elf";
-    public string? Weakness { get; set; }
+    public Elf()
+    {
+        Class = "Elf";
+        //Weakness = 
+    }
 }
 
 internal class Tharion : Elf // TANK
 {
-    public string? Name = $"Tharion - {Menu.Menu.ElfName()}";
+    public Tharion()
+    {
+        Name = $"Tharion - {Menu.Menu.ElfName()}";
+    }
 }
 
 internal class Elowen : Elf // Healer
 {
-    public string? Name = $"Elowen - {Menu.Menu.ElfName()}";
+    public Elowen()
+    {
+        Name = $"Elowen - {Menu.Menu.ElfName()}";
+    }
 }
 internal class Sylvestra : Elf // DPS
 {
-    public string? Name = $"Sylvestra - {Menu.Menu.ElfName()}";
+    public Sylvestra()
+    {
+        Name = $"Sylvestra - {Menu.Menu.ElfName()}";
+    }
 }
 
 
@@ -87,20 +110,32 @@ internal class Sylvestra : Elf // DPS
 
 internal class Ghost : Enemy // Klass
 {
-    public string? Class = "Ghost";
-    public string? Weakness { get; set; }
+    public Ghost()
+    {
+        Class = "Ghost";
+        // Weakness =
+    }
 }
 internal class Gravemourn : Ghost // TANK
 {
-    public string? Name = $"Gravemourn - {Menu.Menu.GhostName()}";
+    public Gravemourn()
+    {
+        Name = $"Gravemourn - {Menu.Menu.GhostName()}";
+    }
 }
 
 internal class Hauntress : Ghost // Healer
 {
-    public string? Name = $"Hauntress - {Menu.Menu.GhostName()}";
+    public Hauntress()
+    {
+        Name = $"Hauntress - {Menu.Menu.GhostName()}";
+    }
 }
 internal class Wraithon : Ghost // DPS
 {
-    public string? Name = $"Wraithon - {Menu.Menu.GhostName()}";
+    public Wraithon()
+    {
+        Name = $"Wraithon - {Menu.Menu.GhostName()}";
+    }
 
 }
