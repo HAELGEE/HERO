@@ -56,6 +56,7 @@ internal class Shaman : Orc // Healer
 {
     public Shaman()
     {
+        Subclass = "Shaman";
         Name = $"Shaman - {Menu.Menu.OrcName()}";
     }
 }
@@ -63,6 +64,7 @@ internal class Goblin : Orc // DPS
 {
     public Goblin()
     {
+        Subclass = "Goblin";
         Name = $"Goblin - {Menu.Menu.OrcName()}";
     }
 }
@@ -85,6 +87,7 @@ internal class Tharion : Elf // TANK
 {
     public Tharion()
     {
+        Subclass = "Tharion";
         Name = $"Tharion - {Menu.Menu.ElfName()}";
     }
 }
@@ -93,6 +96,7 @@ internal class Elowen : Elf // Healer
 {
     public Elowen()
     {
+        Subclass = "Elowen";
         Name = $"Elowen - {Menu.Menu.ElfName()}";
     }
 }
@@ -100,6 +104,7 @@ internal class Sylvestra : Elf // DPS
 {
     public Sylvestra()
     {
+        Subclass = "Sylvestra";
         Name = $"Sylvestra - {Menu.Menu.ElfName()}";
     }
 }
@@ -120,6 +125,7 @@ internal class Gravemourn : Ghost // TANK
 {
     public Gravemourn()
     {
+        Subclass = "Gravemourn";
         Name = $"Gravemourn - {Menu.Menu.GhostName()}";
     }
 }
@@ -128,6 +134,7 @@ internal class Hauntress : Ghost // Healer
 {
     public Hauntress()
     {
+        Subclass = "Hauntress";
         Name = $"Hauntress - {Menu.Menu.GhostName()}";
     }
 }
@@ -135,6 +142,7 @@ internal class Wraithon : Ghost // DPS
 {
     public Wraithon()
     {
+        Subclass = "Wraithon";
         Name = $"Wraithon - {Menu.Menu.GhostName()}";
     }
 
