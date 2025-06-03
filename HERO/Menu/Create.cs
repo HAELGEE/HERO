@@ -124,8 +124,7 @@ internal class Create
 
                 db.User.Add(new User(firstName, lastName, email, hashedPassword));
                 db.SaveChanges();
-
-
+                break;
             }
         }
     }

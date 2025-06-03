@@ -34,6 +34,7 @@ public class Menu
                     menuChoice1.Add("\x1b[3mLogga ut\x1b[0m");
                     menuChoice1.Add("\x1b[3mHero Information\x1b[0m");
                     menuChoice1.Add("\x1b[3mSpara/Ladda Hero\x1b[0m");
+                    menuChoice1.Add("\x1b[3mSpela\x1b[0m");
 
                     if (Program.iUser.IsAdmin)
                         menuChoice1.Add("\x1b[3mAdmin\x1b[0m");
@@ -126,7 +127,7 @@ public class Menu
 
                                 menuChoice2.Add("Spara nuvarande Hero");
                                 menuChoice2.Add("Ladda Hero");
-                                menuChoice2.Add("B för att backa");
+                                menuChoice2.Add("Backa");
 
                                 for (int i = 0; i < menuChoice2.Count; i++)
                                 {
@@ -175,10 +176,14 @@ public class Menu
                             break;
 
                         case 4:
-                            Admin.AdminMenu();
+                            PlayMenu.GamePlay();
                             break;
 
                         case 5:
+                            Admin.AdminMenu();
+                            break;
+
+                        case 6:
                             menu = false;
                             Quit.QuitMessage();
                             break;
