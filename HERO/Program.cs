@@ -1,4 +1,5 @@
-﻿using HERO.Interfaces;
+﻿using HERO.Attacks;
+using HERO.Interfaces;
 using HERO.Menu;
 using HERO.Models;
 
@@ -13,7 +14,8 @@ namespace HERO
         {
             using (var db = new MyDbContext())
             {
-                Menu.Menu.StartMenu();
+                //Menu.Menu.StartMenu();
+                Attack.Attacking();
             }
         }
     }

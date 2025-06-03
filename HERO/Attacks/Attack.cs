@@ -11,4 +11,11 @@ namespace HERO.Attacks;
 internal class Attack
 {
 
+    public static void Attacking()
+    {        
+        Goblin goblin = new Goblin();
+        Console.WriteLine("Skada: " + goblin.Damage);   
+        Console.WriteLine("Namn: "+ goblin.Name);
+        Console.WriteLine($"Klass: {goblin.Class}");
+    }
 }

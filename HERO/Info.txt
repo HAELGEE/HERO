@@ -11,6 +11,10 @@ Bygg vidare
 	Elf = Tharion(Tank), Sylvestra(DPS), Elowen(Healer)
 	Ghost = Gravemourn(Tank), Wraithon(DPS), Hauntress(Healer)
 
+	DPS = Högre damage, mindre Armor. Snabbare (Agilare)
+	Healer = Medium/låg damage, en Roll på om Heal eller Damage skall göras? Eller en Roll bara på om Heal skall komma efter en skada?
+	Tank = Lägre skada. Mer HP, Mer Armor (Uthålligare)
+
 
 3.	Healing. Skall det vara 10 liv per tick? Kanske mer efter viss level/hp ? Kanske stegra beroende på hp? 
 	Typ om man har 200hp healar 20hp per tick och 300 ger 30/tick
