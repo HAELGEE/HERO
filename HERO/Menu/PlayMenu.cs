@@ -1,5 +1,6 @@
 ﻿using HERO.Database_Stuff;
 using HERO.Models;
+using HERO.Attacks;
 using HERO.Stuff;
 using System;
 using System.Collections;
