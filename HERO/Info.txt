@@ -2,4 +2,3 @@
 
 Bygg vidare
 
-När man kollar sin Heros information skall man kolla efter Sin nuvarande Aktiva Hero och efter User id kopplat till den Hero

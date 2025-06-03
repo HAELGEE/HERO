@@ -45,7 +45,7 @@ internal class Entity
 
             foreach (var hero in heros)
             {
-                Console.WriteLine(TextCenter.CenterTexts($"Usernam: {hero.Username}"));
+                Console.WriteLine(TextCenter.CenterTexts($"Username: {hero.Username}"));
                 Console.WriteLine(TextCenter.CenterTexts($"Level: {hero.Level}"));
                 if (hero.Title != null)
                     Console.WriteLine(TextCenter.CenterTexts($"Titel: {hero.Title}"));
