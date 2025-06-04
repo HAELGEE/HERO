@@ -72,7 +72,7 @@ internal class PlayMenu
                     case 0:
                         Console.Clear();
                         if (Entity.LookingIfUserHaveActiveHero())
-                            HeroStatus.CurrentHeroMenu();
+                            Menu.CurrentHeroMenu();
                         else
                         {
                             Console.WriteLine();
