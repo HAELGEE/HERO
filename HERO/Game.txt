@@ -1,0 +1,85 @@
+
+
+
+Statmodell (för ALLA enheter):
+	Stat	Funktion
+	Strength	+HP, +Melee Damage
+	Agility	+Speed, +Dodge/Initiative
+	Intelligence	+Healing Power, +Magic Resist eller Mana
+	Speed	Påverkar turordning
+	Armor	Reducerar inkommande fysisk skada
+	Resistance	Minskar t.ex. debuffs/magisk skada
+	Stamina	Påverkar uthållighet (kan påverka HP också)
+	Lifesteal	Ger HP tillbaka vid skada
+	Charm	(Valfritt) – påverkar event/dialog/aggro
+
+
+Härledda värden:
+	Exempel (balanserbart!):
+	
+	MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
+	Speed = 5 + (Agility * 2);
+	Damage = BaseDamage + (Strength * 1.5) [eller Intelligence för magi];
+	HealingPower = Intelligence * 2;
+
+
+Alternativ: Klassbaserad tillväxt
+	TankGrowth:     +2 STR, +1 AGI, +0 INT, +2 STA  
+	HealerGrowth:   +1 STR, +1 AGI, +2 INT, +1 STA  
+	DPSGrowth:      +1 STR, +2 AGI, +1 INT, +0 STA
+
+Räkna ut Damage efter armor:
+	finalDamage = baseDamage * (100 / (100 + Armor))
+
+Räkna ut rätt Armor:
+	Armor = (Strength * 0.5f) + (Stamina * 0.25f) + EquipmentArmor
+
+Räkna ut rätt Resistance:
+	Resistance = (Intelligence * 0.5f) + (Charm * 0.25f) + EquipmentResistance
+
+
+
+---- Något sånt här? ---------------------------------------------------
+Fiendeexempel: Orc Tank (nivå 3)
+
+	Level: 3
+	Race: Orc (+1 STR, +1 STA)
+	Class: TankGrowth (+2 STR, +1 AGI, +0 INT, +2 STA per level)
+
+	BaseStats (uträknat):
+	 Strength: 1 (start) + 1 (race) + 2*3 = 8
+	 Stamina: 1 (start) + 1 (race) + 2*3 = 8
+	 Agility: 1 (start) + 1*3 = 4
+	 Intelligence: 1 (start)
+	 Armor: 4
+	 Speed = 5 + (Agility * 2) = 13
+	 MaxHealth = 50 + (8*5) + (8*3) = 50 + 40 + 24 = 114
+	 Damage = Base (e.g. 5) + (STR * 1.5) = 5 + 12 = 17
+------------------------------------------------------------------------
+
+Exempel: Orc Healer
+	Level 1 + ras:
+
+	Strength = 1; + 1 = 2
+	Agility = 1;
+	Intelligence = 1;
+	Stamina = 1; + 1 = 2
+	Armor = 2;
+	Speed = 5;
+	MaxHealth = 45;
+	Damage = 5;
+	Healing = 2;
+------------------------------------------------------------------------
+
+Exempel: Orc DPS
+	Level 1 + ras:
+
+	Strength: 1 + 1 = 2
+	Agility: 1
+	Intelligence: 1
+	Stamina: 1 + 1 = 2
+	Armor = 1
+	Speed = 7
+	MaxHealth = 40
+	Damage = 7
+------------------------------------------------------------------------

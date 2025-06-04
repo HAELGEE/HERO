@@ -7,6 +7,16 @@ using System.Threading.Tasks;
 namespace HERO.Models;
 internal class Hero
 {
+    public Hero()
+    {
+        MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
+        Speed = 5 + (Agility * 2);
+        CurrentHealth = MaxHealth;
+        BaseDamage = BaseDamage + (int)(Strength * 1.5);
+        Damage = BaseDamage * (100 / (100 + Armor));
+    }
+
+
     // Basic saker för hero konto
     public int Id { get; set; }
     public bool ActiveHero { get; set; }
@@ -26,17 +36,35 @@ internal class Hero
 
     // Hero attributs
     public string? Username { get; set; } // Username på HERO
-    public int? Level { get; set; } = 1;
-    public int? CurrentXP { get; set; } = 0;
-    public int? MaxXP { get; set; } = 100;
-    public int? CurrentHealth { get; set; } = 100;
-    public int? MaxHealth { get; set; } = 100;
-    public int? Damage { get; set; } = 10;
+    public int Level { get; set; } = 1;
+    public int CurrentXP { get; set; } = 0;
+    public int MaxXP { get; set; } = 100;
+    public int? CurrentHealth { get; set; }
+    public int? MaxHealth { get; set; }
+    public int? BaseDamage { get; set; } = 10;
+    public int? Damage { get; set; }
     public int? Armor { get; set; } = 2;
     public int? Strength { get; set; } = 2;
     public int? Intelligence { get; set; } = 2;
     public int? Agility { get; set; } = 2;
-    public int? Speed { get; set; } = 2;
+    public int? Speed { get; set; }
+
+    // ----------------------------------------------------------------------------------------------------------------------------------
+    // Denna Hjälper till i Turn rundorna, Tex om Hero har speed 8 och Fiende har speed 5 då Börjar Hero eftersom den har högst speed
+    // Efter attacken skall skall 3 Speed vara kvar då den är 3 speed snabbare än Fienden. Alltså 8-5 = 3
+    // Nästa gång det är Hero tur så får den + sin Original Speed vilket är 8 + 3 Från förra rundan vilket blir 12
+    // Sedan börjar Kontrollen av vem som har snabbast speed igen och i denna omgången så kör Hero 2 gången innan Fiende
+    // Fiende speed = 5, Hero speed = 12: 12-5 = 7. 
+    // Fiende speed = 5, Hero speed = 7: 7-5 = 2.
+    // Fiende speed = 5, Hero speed = 2: FIENDE börjar.
+
+    // Skall alltid börja på 0!! Byggs på med vanliga Speed
+    public int TotalSpeed { get; set; } = 0;
+
+    // lägger till en bool "Turn" som i sin tur håller ordning på om denne har slagits eller inte för att veta när speed skall resetas
+    public bool Turn { get; set; } = false; // Blir true efter man slagits, och om Både HERO och Fiende har True så blir Speed = 0 igen.
+    // ----------------------------------------------------------------------------------------------------------------------------------
+
     public int? Stamina { get; set; } = 2;
     public int? Charm { get; set; } = 2;
     public int? Resistance { get; set; } = 0;
@@ -48,4 +76,12 @@ internal class Hero
     public int? OrcSlain { get; set; }
     public int? ElfSlain { get; set; }
     public int? GhostSlain { get; set; }
+
+   public void StatIncrease()
+    {
+        MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
+        Speed = 5 + (Agility * 2);
+        CurrentHealth = MaxHealth;
+        BaseDamage = BaseDamage + (int)(Strength * 1.5);        
+    }
 }
