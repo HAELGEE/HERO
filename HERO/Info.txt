@@ -2,8 +2,7 @@
 
 Bygg vidare
 
-1.	Fixa så Titlar visas efter det att man dödat över 500 av sitt slag? Vilket get en 5% mer skada emot den Typen av Motstånd
-	Kanske tom fixa så att efter 2000 så får man en bättre Titel med högre skada, typ 10% ?
+1.	Fixa så Titlar fungerar vid Attacker
 
 2.	Fixa in motståndare. Huvdras = Orc, Elf, Ghost
 

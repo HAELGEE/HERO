@@ -86,6 +86,7 @@ internal class Enemy
         MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
         CurrentHealth = MaxHealth;
         BaseDamage = BaseDamage + (int)(Intelligence * 1.5) + (int)(Agility);
+        Healing = Healing + (int)(Intelligence * 1);
     }
     public void DpsBaseStats()
     {

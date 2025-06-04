@@ -53,6 +53,6 @@ internal class Attack
         Console.WriteLine($"{Enemy.Name} - {Enemy.Race} - {Enemy.Class} ");
 
         Console.WriteLine($"Agi: {Enemy.Agility} - Int: {Enemy.Intelligence} - Str: {Enemy.Strength} - Armor: {Enemy.Armor}");
-        Console.WriteLine($"Attack - {Enemy.BaseDamage}");
+        Console.WriteLine($"Attack - {Enemy.BaseDamage} - Heal: {Enemy.Healing}");
     }
 }
