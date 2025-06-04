@@ -20,6 +20,7 @@ internal class Enemy
     public int? CurrentHealth { get; set; }
     public int? MaxHealth { get; set; }
     public int? Healing { get; set; }
+    public int? BaseDamage { get; set; } = 10;
     public int? Damage { get; set; }
     public int? Armor { get; set; }
     public int? Strength { get; set; }
@@ -59,6 +60,17 @@ internal class Enemy
         Speed = 5;
         MaxHealth = 50;
         Damage = 5;
+
+        MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
+        CurrentHealth = MaxHealth;
+        BaseDamage = BaseDamage + (int)(Strength * 1.5);
+    }
+    public void TankStats()
+    {
+        Speed = Speed + (Agility * 2);
+        MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
+        CurrentHealth = MaxHealth;
+        BaseDamage = BaseDamage + (int)(Strength * 1.5);
     }
     public void HealerBaseStats()
     {
@@ -70,7 +82,14 @@ internal class Enemy
         Speed = 5;
         MaxHealth = 45;
         Damage = 5;
-        Healing = 2;
+        Healing = 2;        
+    }
+    public void HealerStats()
+    {
+        Speed = Speed + (Agility * 2);
+        MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
+        CurrentHealth = MaxHealth;
+        BaseDamage = BaseDamage + (int)(Strength * 1.5);
     }
     public void DpsBaseStats()
     {
@@ -82,6 +101,19 @@ internal class Enemy
         Speed = 7;
         MaxHealth = 40;
         Damage = 7;
+
+
+        MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
+        CurrentHealth = MaxHealth;
+        BaseDamage = BaseDamage + (int)(Strength * 1.5);
+
+    }
+    public void DpsStats()
+    {
+        Speed = Speed + (Agility * 2);
+        MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
+        CurrentHealth = MaxHealth;
+        BaseDamage = BaseDamage + (int)(Strength * 1.5);
     }
 }
 
@@ -91,7 +123,7 @@ internal class Orc : Enemy // Klass
     public Orc()
     {
         Race = "Orc";
-       
+
         //Weakness = 
     }
     public void RaceStatIncrease()
@@ -110,6 +142,7 @@ internal class Grunt : Orc // TANK
 
         TankBaseStats();
         RaceStatIncrease();
+        TankStats();
     }
 }
 
@@ -122,6 +155,7 @@ internal class Shaman : Orc // Healer
 
         HealerBaseStats();
         RaceStatIncrease();
+        HealerStats();
     }
 }
 internal class Goblin : Orc // DPS
@@ -133,6 +167,7 @@ internal class Goblin : Orc // DPS
 
         DpsBaseStats();
         RaceStatIncrease();
+        DpsStats();
     }
 }
 
@@ -146,7 +181,7 @@ internal class Elf : Enemy // Klass
     public Elf()
     {
         Race = "Elf";
-       
+
         //Weakness = 
     }
     public void RaceStatIncrease()
@@ -165,6 +200,7 @@ internal class Tharion : Elf // TANK
 
         TankBaseStats();
         RaceStatIncrease();
+        TankStats();
     }
 }
 
@@ -177,6 +213,7 @@ internal class Elowen : Elf // Healer
 
         HealerBaseStats();
         RaceStatIncrease();
+        HealerStats();
     }
 }
 internal class Sylvestra : Elf // DPS
@@ -188,6 +225,7 @@ internal class Sylvestra : Elf // DPS
 
         DpsBaseStats();
         RaceStatIncrease();
+        DpsStats();
     }
 }
 
@@ -200,7 +238,7 @@ internal class Ghost : Enemy // Klass
     public Ghost()
     {
         Race = "Ghost";
-        
+
         // Weakness =
     }
     public void RaceStatIncrease()
@@ -218,6 +256,7 @@ internal class Gravemourn : Ghost // TANK
 
         TankBaseStats();
         RaceStatIncrease();
+        TankStats();
     }
 }
 
@@ -230,6 +269,7 @@ internal class Hauntress : Ghost // Healer
 
         HealerBaseStats();
         RaceStatIncrease();
+        HealerStats();
     }
 }
 internal class Wraithon : Ghost // DPS
@@ -241,6 +281,7 @@ internal class Wraithon : Ghost // DPS
 
         DpsBaseStats();
         RaceStatIncrease();
+        DpsStats();
     }
 
 }

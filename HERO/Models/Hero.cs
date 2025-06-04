@@ -30,7 +30,7 @@ internal class Hero
     public virtual ICollection<Weapon>? WeaponToEquip { get; set; } = new List<Weapon>();
     public virtual ICollection<EquipedWeapon>? EquipedWeapon { get; set; } = new List<EquipedWeapon>();
     public virtual ICollection<MageSkill>? MageSkill { get; set; } = new List<MageSkill>();
-    public virtual ICollection<MeleeSkill>? MeleeSkill { get; set; } = new List<MeleeSkill>(); 
+    public virtual ICollection<MeleeSkill>? MeleeSkill { get; set; } = new List<MeleeSkill>();
     public virtual ICollection<RangeSkill>? RangeSkill { get; set; } = new List<RangeSkill>();
     public virtual ICollection<Title>? Titles { get; set; } = new List<Title>();
 
@@ -77,11 +77,11 @@ internal class Hero
     public int? ElfSlain { get; set; }
     public int? GhostSlain { get; set; }
 
-   public void StatIncrease()
+    public void StatIncrease()
     {
         MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
         Speed = 5 + (Agility * 2);
         CurrentHealth = MaxHealth;
-        BaseDamage = BaseDamage + (int)(Strength * 1.5);        
+        BaseDamage = BaseDamage + (int)(Strength * 1.5);
     }
 }
