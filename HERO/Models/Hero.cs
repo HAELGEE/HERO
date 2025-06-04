@@ -82,6 +82,6 @@ internal class Hero
         MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
         Speed = 5 + (Agility * 2);
         CurrentHealth = MaxHealth;
-        BaseDamage = BaseDamage + (int)(Strength * 1.5);
+        BaseDamage = BaseDamage + (int)(Strength * 1.5) + (int)(Agility * 1.5);
     }
 }

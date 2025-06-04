@@ -59,18 +59,14 @@ internal class Enemy
         Armor = 4;
         Speed = 5;
         MaxHealth = 50;
-        Damage = 5;
-
-        MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
-        CurrentHealth = MaxHealth;
-        BaseDamage = BaseDamage + (int)(Strength * 1.5);
+        BaseDamage = 7;
     }
     public void TankStats()
     {
         Speed = Speed + (Agility * 2);
         MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
         CurrentHealth = MaxHealth;
-        BaseDamage = BaseDamage + (int)(Strength * 1.5);
+        BaseDamage = BaseDamage + (int)(Strength * 1.5) + (int)(Agility * 1);
     }
     public void HealerBaseStats()
     {
@@ -81,7 +77,7 @@ internal class Enemy
         Armor = 2;
         Speed = 5;
         MaxHealth = 45;
-        Damage = 5;
+        BaseDamage = 7;
         Healing = 2;        
     }
     public void HealerStats()
@@ -89,7 +85,7 @@ internal class Enemy
         Speed = Speed + (Agility * 2);
         MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
         CurrentHealth = MaxHealth;
-        BaseDamage = BaseDamage + (int)(Strength * 1.5);
+        BaseDamage = BaseDamage + (int)(Intelligence * 1.5) + (int)(Agility);
     }
     public void DpsBaseStats()
     {
@@ -100,20 +96,14 @@ internal class Enemy
         Armor = 1;
         Speed = 7;
         MaxHealth = 40;
-        Damage = 7;
-
-
-        MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
-        CurrentHealth = MaxHealth;
-        BaseDamage = BaseDamage + (int)(Strength * 1.5);
-
+        BaseDamage = 10;
     }
     public void DpsStats()
     {
         Speed = Speed + (Agility * 2);
         MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
         CurrentHealth = MaxHealth;
-        BaseDamage = BaseDamage + (int)(Strength * 1.5);
+        BaseDamage = BaseDamage + (int)(Agility * 1.5) + (int)(Strength * 1.5);
     }
 }
 
