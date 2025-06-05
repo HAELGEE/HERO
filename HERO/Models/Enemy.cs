@@ -114,7 +114,7 @@ internal class Enemy
                 BaseDamage = Convert.ToInt32(BaseDamage + (Intelligence * 1.5) + (Agility * 1));
                 break;
         }
-        Healing = Healing + (int)(Intelligence * 1);
+        Healing = Healing + (int?)(Intelligence * 1);
     }
     public void DpsBaseStats()
     {

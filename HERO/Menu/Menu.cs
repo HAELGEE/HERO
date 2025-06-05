@@ -17,9 +17,9 @@ public class Menu
     {
         int menuSelecter1 = 0;
         bool menu = true;
-        while (menu)
+        using (var db = new MyDbContext())
         {
-            using (var db = new MyDbContext())
+            while (menu)
             {
                 List<string> menuChoice1 = new List<string>();
 
@@ -104,9 +104,9 @@ public class Menu
 
                             if (user != null)
                             {
-                                user!.IsLoggedIn = false;
                                 Program.iUser.IsLoggedIn = false;
                                 Program.iUser.IsAdmin = false;
+                                user!.IsLoggedIn = false;
                                 db.SaveChanges();
                             }
 
@@ -184,7 +184,14 @@ public class Menu
                             break;
 
                         case 4:
-                            await PlayMenu.GamePlay();
+                            if (Entity.LookingIfUserHaveActiveHero())
+                                await PlayMenu.GamePlay();
+                            else
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine(TextCenter.CenterTexts("Ingen vald Hero än"));
+                                Thread.Sleep(1500);
+                            }
                             break;
 
                         case 5:
@@ -203,33 +210,45 @@ public class Menu
     }
     public static void TitleMenu()
     {
-        while (true)
+        bool menu = true;
+        while (menu)
         {
             using (var db = new MyDbContext())
             {
-                var hero = db.Hero.Where(h => h.UserId == Program.iUser.Id && h.ActiveHero == true).SingleOrDefault();
-                var titles = db.Title.Where(h => h.HeroId == hero!.Id).ToList();
+                var hero = db.Hero.Where(h => h.UserId == Program.iUser.Id).ToList();
 
-
-                Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n");
-                if (titles.Count == 0)
+                foreach (var h in hero)
                 {
-                    Console.WriteLine(TextCenter.CenterTexts("Du har inga Titlar ännu"));
-                    Console.WriteLine(TextCenter.CenterTexts("Tryck någon knapp för att gå bakåt"));
-                    Console.ReadKey();
-                    break;
-                }
-                else
-                {
-                    foreach (var title in titles)
+                    if (h.ActiveHero == true)
                     {
-                        Console.WriteLine(TextCenter.CenterTexts($"{title.Name}"));
+                        var titles = db.Title.Where(t => t.HeroId == h.Id).ToList();
+
+
+                        Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n");
+                        if (titles != null)
+                        {
+                            foreach (var title in titles)
+                            {
+                                Console.WriteLine(TextCenter.CenterTexts($"{title.Name}"));
+                            }
+                            Console.WriteLine("\nHar inte byggt klart detta än. Skall använda pilarna för att välja!");
+                            Console.WriteLine("Tryck b för bakåt");
+                            string input = Console.ReadLine()!;
+                            if (input.ToLower() == "b")
+                            {
+                                menu = false;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine(TextCenter.CenterTexts("Du har inga Titlar ännu"));
+                            Console.WriteLine(TextCenter.CenterTexts("Tryck någon knapp för att gå bakåt"));
+                            Console.ReadKey();
+                            menu = false;
+                            break;
+                        }
                     }
-                    Console.WriteLine("\nHar inte byggt klart detta än. Skall använda pilarna för att välja!");
-                    Console.WriteLine("Tryck b för bakåt");
-                    string input = Console.ReadLine()!;
-                    if (input.ToLower() == "b")
-                        break;
                 }
             }
         }
@@ -239,7 +258,7 @@ public class Menu
         using (var db = new MyDbContext())
         {
             // Kontroll så man är inne på rätt Hero            
-            var user = db.Hero.Where(u => u.UserId == Program.iUser.Id && u.ActiveHero == true).ToList();
+            var user = db.Hero.Where(u => u.UserId == Program.iUser.Id).ToList();
 
             foreach (var hero in user)
             {
@@ -251,11 +270,11 @@ public class Menu
                     {
                         AddingTitle("Orc");
                     }
-                    else if (hero.ElfSlain == 500)
+                    if (hero.ElfSlain == 500)
                     {
                         AddingTitle("Elf");
                     }
-                    else if (hero.GhostSlain == 500)
+                    if (hero.GhostSlain == 500)
                     {
                         AddingTitle("Ghost");
                     }
@@ -267,7 +286,7 @@ public class Menu
     {
         using (var db = new MyDbContext())
         {
-            var user = db.Hero.Where(u => u.UserId == Program.iUser.Id && u.ActiveHero == true).ToList();
+            var user = db.Hero.Where(u => u.UserId == Program.iUser.Id).ToList();
 
             foreach (var hero in user)
             {
@@ -275,12 +294,11 @@ public class Menu
                 {
                     var titles = db.Title.Where(t => t.HeroId == hero.Id && t.Name!.Contains(input)).SingleOrDefault();
 
-
                     if (titles == null)
                     {
                         db.Title.Add(new Title
                         {
-                            HeroId = Program.iUser.Id,
+                            HeroId = hero.Id,
                             Name = $"{input} Slayer"
                         });
                         db.SaveChanges();
@@ -296,7 +314,7 @@ public class Menu
             Console.Clear();
             var hero = db.Hero.Where(h => h.ActiveHero == true).SingleOrDefault();
 
-            if (hero.CurrentHealth == hero.MaxHealth)
+            if (hero!.CurrentHealth == hero.MaxHealth)
             {
                 Console.WriteLine("\n\n\n\n\n\n\n\n\n\n");
                 Console.WriteLine(TextCenter.CenterTexts("Din hjälte har redan fullt HP"));
@@ -503,7 +521,7 @@ public class Menu
             Console.WriteLine("\n\n\n");
 
             Console.WriteLine(TextCenter.CenterTexts("==========================================================="));
-            Console.WriteLine(TextCenter.CenterTexts($"Ditt namn på din Hero: {hero.Username}\n"));
+            Console.WriteLine(TextCenter.CenterTexts($"Ditt namn på din Hero: {hero!.Username}\n"));
             Console.WriteLine(TextCenter.CenterTexts($"Titel: {hero.Title}\n"));
             Console.WriteLine(TextCenter.CenterTexts("Din Hero är på Level: " + hero.Level));
             Console.WriteLine(TextCenter.CenterTexts($"Din Hero har: {hero.CurrentXP}xp"));

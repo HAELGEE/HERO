@@ -29,7 +29,6 @@ internal class PlayMenu
         int menuSelecter = 0;
 
         bool spel = true;
-        bool isFalse = true;
 
         while (spel)
         {

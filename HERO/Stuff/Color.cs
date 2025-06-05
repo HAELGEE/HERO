@@ -16,7 +16,7 @@ internal class Color
     }
     public static void ChangeColorTextCenter<T>(T input, string color)
     {
-        int padding = (Console.WindowWidth - input.ToString().Length) / 2;
+        int padding = (Console.WindowWidth - input!.ToString()!.Length) / 2;
         string centeredText = new string(' ', padding) + input;
         Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), color);
         Console.Write(centeredText);
