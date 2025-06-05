@@ -207,8 +207,8 @@ public class Menu
         {
             using (var db = new MyDbContext())
             {
-                var hero = db.Hero.Where(h => h.UserId == Program.iUser.Id).SingleOrDefault();
-                var titles = db.Title.Where(h => h.HeroId == hero.Id).ToList();
+                var hero = db.Hero.Where(h => h.UserId == Program.iUser.Id && h.ActiveHero == true).SingleOrDefault();
+                var titles = db.Title.Where(h => h.HeroId == hero!.Id).ToList();
 
 
                 Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n");
@@ -239,21 +239,28 @@ public class Menu
         using (var db = new MyDbContext())
         {
             // Kontroll så man är inne på rätt Hero            
-            var user = db.Hero.Where(u => u.UserId == Program.iUser.Id).SingleOrDefault();
-            var titles = db.Title.Where(t => t.HeroId == user!.Id).ToList();
+            var user = db.Hero.Where(u => u.UserId == Program.iUser.Id && u.ActiveHero == true).ToList();
 
-            if (user.OrcSlain == 500)
+            foreach (var hero in user)
             {
-                AddingTitle("Orc");
+                if (hero.ActiveHero)
+                {
+                    var titles = db.Title.Where(t => t.HeroId == hero.Id).ToList();
+
+                    if (hero.OrcSlain == 500)
+                    {
+                        AddingTitle("Orc");
+                    }
+                    else if (hero.ElfSlain == 500)
+                    {
+                        AddingTitle("Elf");
+                    }
+                    else if (hero.GhostSlain == 500)
+                    {
+                        AddingTitle("Ghost");
+                    }
+                }
             }
-            else if (user.ElfSlain == 500)
-            {
-                AddingTitle("Elf");
-            }
-            else if (user.GhostSlain == 500)
-            {
-                AddingTitle("Ghost");
-            }            
         }
     }
     static void AddingTitle(string input)

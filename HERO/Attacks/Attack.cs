@@ -89,7 +89,6 @@ internal class Attack
                             enemy.TotalSpeed++;
                     }
 
-                    Console.Write($"H: {hero!.TotalSpeed}   {hero!.Speed}   - F: {enemy.TotalSpeed}   {enemy.Speed}");
 
                     // Hero attackerar (högre speed)
                     if (hero!.TotalSpeed > enemy.TotalSpeed)
@@ -142,6 +141,16 @@ internal class Attack
                         if (enemy.CurrentHealth <= 0)
                         {
                             Console.WriteLine("\n" + TextCenter.CenterTexts($"Du besegrade {enemy.Name}"));
+                            if (enemy.Race == "Orc")
+                                hero.OrcSlain++;
+                            else if(enemy.Race == "Elf")
+                                hero.ElfSlain++;
+                            else if(enemy.Race == "Ghost")
+                                hero.GhostSlain++;
+
+
+
+                            db.SaveChanges();
                         }
                         break;
                     }
