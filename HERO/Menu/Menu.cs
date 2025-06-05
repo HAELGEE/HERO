@@ -242,12 +242,12 @@ public class Menu
                                 }
                                 menuChoice.Add("Bakåt");
                                 menuActions.Add(() => menu2 = false);
-                                
 
+                                Console.WriteLine("\n\n\n\n\n" + TextCenter.CenterTexts("Vilken titel vill du använda"));
                                 for (int i = 0; i < menuChoice.Count; i++)
                                 {
                                     if (i == 0)
-                                        Console.WriteLine($"\n\n\n\n\n\n\n\n");
+                                        Console.WriteLine($"\n\n\n");
                                     if (i == menuSelecter)
                                     {
                                         Console.ForegroundColor = ConsoleColor.Green;
@@ -296,12 +296,12 @@ public class Menu
             }
         }
     }
-    public static void LookingTitle()
+    public static async Task LookingTitle()
     {
         using (var db = new MyDbContext())
         {
             // Kontroll så man är inne på rätt Hero            
-            var user = db.Hero.Where(u => u.UserId == Program.iUser.Id).ToList();
+            var user = await db.Hero.Where(u => u.UserId == Program.iUser.Id).ToListAsync();
 
             foreach (var hero in user)
             {
@@ -309,15 +309,15 @@ public class Menu
                 {
                     var titles = db.Title.Where(t => t.HeroId == hero.Id).ToList();
 
-                    if (hero.OrcSlain == 500)
+                    if (hero.OrcSlain >= 500)
                     {
                         AddingTitle("Orc");
                     }
-                    if (hero.ElfSlain == 500)
+                    if (hero.ElfSlain >= 500)
                     {
                         AddingTitle("Elf");
                     }
-                    if (hero.GhostSlain == 500)
+                    if (hero.GhostSlain >= 500)
                     {
                         AddingTitle("Ghost");
                     }

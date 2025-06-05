@@ -30,6 +30,17 @@ internal class Load
 
                 if (!string.IsNullOrWhiteSpace(heroChoice))
                 {
+                    var resetActiveHero = db.Hero.Where(h => h.ActiveHero).ToList();
+
+                    if (resetActiveHero != null)
+                    {
+                        foreach (var hero in resetActiveHero)
+                        {
+                            hero.ActiveHero = false;
+                        }
+                        db.SaveChanges();
+                    }
+
                     var currentHero = db.Hero.Where(h => h.UserId == Program.iUser.Id && h.Username == heroChoice).ToList().SingleOrDefault();
 
                     if (currentHero != null)
