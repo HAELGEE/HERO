@@ -1,5 +1,7 @@
 ﻿using HERO.Database_Stuff;
+using HERO.Menu;
 using HERO.Models;
+using HERO.Attacks;
 using HERO.Stuff;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -51,8 +53,8 @@ internal class Attack
         using (var db = new MyDbContext())
         {
             var enemy = ReturningRandomEnemy();
-            //var hero = await db.Hero.Where(h => h.UserId == Program.iUser.Id && h.ActiveHero == true).SingleOrDefaultAsync();
-            var hero = await db.Hero.Where(h => h.Id == 2).SingleOrDefaultAsync(); // tillfälligt lagt in denna för att se så det fungerar
+            var hero = await db.Hero.Where(h => h.UserId == Program.iUser.Id && h.ActiveHero == true).SingleOrDefaultAsync();
+            //var hero = await db.Hero.Where(h => h.Id == 2).SingleOrDefaultAsync(); // tillfälligt lagt in denna för att se så det fungerar
 
             enemy.Turn = false;
             hero!.Turn = false;
@@ -134,7 +136,7 @@ internal class Attack
                         if (hero.CurrentHealth <= 0)
                         {
                             Console.WriteLine("\n" + TextCenter.CenterTexts("Din Hero dog!"));
-                            hero.CurrentHealth = 0;
+                            Menu.Menu.HealingMenu();
                             db.SaveChanges();
                         }
                         if (enemy.CurrentHealth <= 0)
