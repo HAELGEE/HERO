@@ -223,22 +223,63 @@ public class Menu
                     {
                         var titles = db.Title.Where(t => t.HeroId == h.Id).ToList();
 
-
                         Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n");
                         if (titles != null)
                         {
-                            foreach (var title in titles)
+                            int menuSelecter = 0;
+                            bool menu2 = true;
+
+                            while (menu2)
                             {
-                                Console.WriteLine(TextCenter.CenterTexts($"{title.Name}"));
+                                Console.Clear();
+                                List<Action> menuActions = new List<Action>();
+                                List<string> menuChoice = new List<string>();
+
+                                foreach (var title in titles)
+                                {
+                                    menuChoice.Add(title.Name!);
+                                    menuActions.Add(() => Console.WriteLine(TextCenter.CenterTexts(title.Name!)));
+                                }
+                                menuChoice.Add("Bakåt");
+                                menuActions.Add(() => menu2 = false);
+                                
+
+                                for (int i = 0; i < menuChoice.Count; i++)
+                                {
+                                    if (i == 0)
+                                        Console.WriteLine($"\n\n\n\n\n\n\n\n");
+                                    if (i == menuSelecter)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Green;
+                                        Console.WriteLine(TextCenter.CenterMenu($"{menuChoice[i]}\t <---"));
+                                        Console.ResetColor();
+                                        Console.CursorVisible = false;
+                                    }
+                                    else
+                                        Console.WriteLine(TextCenter.CenterTexts(menuChoice[i]));
+                                }
+
+                                var key = Console.ReadKey(true).Key;
+
+                                if (key == ConsoleKey.DownArrow && menuSelecter < menuChoice.Count - 1)
+                                {
+                                    menuSelecter++;
+                                }
+                                else if (key == ConsoleKey.UpArrow && menuSelecter >= 1)
+                                {
+                                    menuSelecter--;
+                                }
+                                else if (key == ConsoleKey.Enter)
+                                {
+                                    if (menuSelecter >= 0 && menuSelecter < menuActions.Count)
+                                    {
+                                        Console.Clear();
+                                        menuActions[menuSelecter].Invoke();  // Kör rätt funktion baserat på menyval
+                                    }
+                                }
                             }
-                            Console.WriteLine("\nHar inte byggt klart detta än. Skall använda pilarna för att välja!");
-                            Console.WriteLine("Tryck b för bakåt");
-                            string input = Console.ReadLine()!;
-                            if (input.ToLower() == "b")
-                            {
-                                menu = false;
-                                break;
-                            }
+                            menu = false;
+                            break;
                         }
                         else
                         {
@@ -247,9 +288,11 @@ public class Menu
                             Console.ReadKey();
                             menu = false;
                             break;
-                        }
+                        }                        
                     }
+                    
                 }
+                break;
             }
         }
     }
