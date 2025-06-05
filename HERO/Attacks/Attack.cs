@@ -135,7 +135,10 @@ internal class Attack
                         if (hero.CurrentHealth <= 0)
                         {
                             Console.WriteLine("\n" + TextCenter.CenterTexts("Din Hero dog!"));
-                            Menu.Menu.HealingMenu();
+                            Thread.Sleep(800);
+
+                            Menu.Menu.HealingMenu();                           
+
                             db.SaveChanges();
                         }
                         if (enemy.CurrentHealth <= 0)
@@ -149,7 +152,7 @@ internal class Attack
                                 hero.GhostSlain++;
 
 
-
+                            Thread.Sleep(800);
                             db.SaveChanges();
                         }
                         break;

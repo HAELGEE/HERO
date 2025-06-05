@@ -69,9 +69,9 @@ internal class Hero
     public int? Gold { get; set; } = 0;
 
     // Hero Titles
-    public int? OrcSlain { get; set; }
-    public int? ElfSlain { get; set; }
-    public int? GhostSlain { get; set; }
+    public int? OrcSlain { get; set; } = 0;
+    public int? ElfSlain { get; set; } = 0;
+    public int? GhostSlain { get; set; } = 0;
 
     public void StatIncrease()
     {

@@ -267,18 +267,25 @@ public class Menu
     {
         using (var db = new MyDbContext())
         {
-            var user = db.Hero.Where(u => u.UserId == Program.iUser.Id).SingleOrDefault();
-            var titles = db.Title.Where(t => t.HeroId == user!.Id && t.Name!.Contains(input)).SingleOrDefault();
+            var user = db.Hero.Where(u => u.UserId == Program.iUser.Id && u.ActiveHero == true).ToList();
 
-
-            if (titles == null)
+            foreach (var hero in user)
             {
-                db.Title.Add(new Title
+                if (hero.ActiveHero)
                 {
-                    HeroId = Program.iUser.Id,
-                    Name = $"{input} Slayer"
-                });
-                db.SaveChanges();
+                    var titles = db.Title.Where(t => t.HeroId == hero.Id && t.Name!.Contains(input)).SingleOrDefault();
+
+
+                    if (titles == null)
+                    {
+                        db.Title.Add(new Title
+                        {
+                            HeroId = Program.iUser.Id,
+                            Name = $"{input} Slayer"
+                        });
+                        db.SaveChanges();
+                    }
+                }
             }
         }
     }
