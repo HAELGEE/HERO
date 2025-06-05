@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace HERO.Menu;
 public class Menu
 {
-    public static void StartMenu()
+    public static async Task StartMenu()
     {
         int menuSelecter1 = 0;
         bool menu = true;
@@ -184,7 +184,7 @@ public class Menu
                             break;
 
                         case 4:
-                            PlayMenu.GamePlay();
+                            await PlayMenu.GamePlay();
                             break;
 
                         case 5:

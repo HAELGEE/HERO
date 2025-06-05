@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace HERO.Menu;
 internal class PlayMenu
 {
-    public static void GamePlay()
+    public static async Task GamePlay()
     {
         string[] menuChoice = {
             "Kolla Status på din hjälte",
@@ -84,7 +84,7 @@ internal class PlayMenu
                     case 1:
                         Console.Clear();
                         //"Roama runt och Attackera mobs"
-
+                        await Attack.Attacking();
                         break;
 
                     case 2:
