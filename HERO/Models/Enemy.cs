@@ -20,7 +20,7 @@ internal class Enemy
     public int? CurrentHealth { get; set; }
     public int? MaxHealth { get; set; }
     public int? Healing { get; set; }
-    public int? BaseDamage { get; set; } = 10;
+    public double? BaseDamage { get; set; } = 10;
     public int? Damage { get; set; }
     public int? Armor { get; set; }
     public int? Strength { get; set; }
@@ -38,7 +38,7 @@ internal class Enemy
     // Fiende speed = 5, Hero speed = 1: FIENDE börjar.
 
     // Skall alltid börja på 0!! Byggs på med vanlig Speed
-    public int TotalSpeed { get; set; } = 0;
+    public int? TotalSpeed { get; set; } = 0;
 
     // lägger till en bool "Turn" som i sin tur håller ordning på om denne har slagits eller inte för att veta när speed skall resetas
     public bool Turn { get; set; } = false; // Blir true efter man slagits, och om Både HERO och Fiende har True så blir Speed = 0 igen.

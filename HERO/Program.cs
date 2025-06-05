@@ -10,12 +10,12 @@ namespace HERO
         public static string loggedInUsername = "";
         public static IUser iUser = new User();
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             using (var db = new MyDbContext())
             {
                 //Menu.Menu.StartMenu();
-                Attack.Attacking();
+                await Attack.Attacking();
 
             }
         }

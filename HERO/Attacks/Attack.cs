@@ -50,13 +50,102 @@ internal class Attack
     {
         using (var db = new MyDbContext())
         {
-            var Enemy = ReturningRandomEnemy();
-            var Hero = await db.Hero.Where(h => h.UserId == Program.iUser.Id).SingleOrDefaultAsync();
+            var enemy = ReturningRandomEnemy();
+            //var hero = await db.Hero.Where(h => h.UserId == Program.iUser.Id && h.ActiveHero == true).SingleOrDefaultAsync();
+            var hero = await db.Hero.Where(h => h.Id == 2).SingleOrDefaultAsync(); // tillfälligt lagt in denna för att se så det fungerar
 
-            Console.WriteLine($"{Enemy.Name} - {Enemy.Race} - {Enemy.Class} ");
+            enemy.Turn = false;
+            hero!.Turn = false;
+            db.SaveChanges();
 
-            Console.WriteLine($"Agi: {Enemy.Agility} - Int: {Enemy.Intelligence} - Str: {Enemy.Strength} - Armor: {Enemy.Armor}");
-            Console.WriteLine($"Attack - {Enemy.BaseDamage} - Heal: {Enemy.Healing}");
+            enemy.TotalSpeed = enemy.Speed;
+            hero!.TotalSpeed = hero!.Speed;
+            db.SaveChanges();
+
+            if (hero!.CurrentHealth <= 0)
+                Console.WriteLine("\n\n\n\n\n\n\n\n\n" + TextCenter.CenterTexts("Du kan inte attackera med 0hp") + "\n\n\n\n\n\n\n");
+            else
+            {
+                int height = 4;
+                while (true)
+                {
+                    Color.ChangeColorNewLineTextCenter2($"    Hero: ", $"{hero!.CurrentHealth}", "Green", " - Fiende: ", $"{enemy.CurrentHealth}    ", "Red");
+
+                    Console.SetCursorPosition(0, height);
+
+                    hero!.Damage = (int?)(hero.BaseDamage * (100 / (100 + (double?)enemy.Armor)));
+                    enemy.Damage = (int?)(enemy.BaseDamage * (100 / (100 + (double?)hero.Armor)));
+                    db.SaveChanges();                                        
+                    
+
+                    // om båda har samma speed, lottning om vem som börjar
+                    if (hero!.TotalSpeed == enemy.TotalSpeed)
+                    {
+                        if (Random.Shared.Next(0, 2) == 0)
+                            hero!.TotalSpeed++;
+                        else
+                            enemy.TotalSpeed++;
+                    }
+
+                    Console.Write($"H: {hero!.TotalSpeed}   {hero!.Speed}   - F: {enemy.TotalSpeed}   {enemy.Speed}");
+
+                    // Hero attackerar (högre speed)
+                    if (hero!.TotalSpeed > enemy.TotalSpeed)
+                    {
+                        hero!.Turn = true;
+                        hero!.TotalSpeed = hero!.TotalSpeed - enemy.Speed;
+                        db.SaveChanges();
+
+                        Color.ChangeColorNewLineTextCenter($"{hero.Username}", "Green", " skadar ", $"{enemy.Name}", "Red", " med ", $"{hero.Damage}", "DarkCyan", " i skada");
+
+                        enemy.CurrentHealth -= hero.Damage;
+                        Thread.Sleep(800);
+                    }
+                    // Fiende attackerar (högre speed)
+                    else if (enemy.TotalSpeed > hero.TotalSpeed)
+                    {
+                        enemy.Turn = true;
+                        enemy.TotalSpeed = enemy!.TotalSpeed - hero!.Speed;
+                        db.SaveChanges();
+
+                        Color.ChangeColorNewLineTextCenter($"{enemy.Name}", "Red", " skadar ", $"{hero.Username}", "Green", " med ", $"{enemy.Damage}", "DarkCyan", " i skada");
+
+
+                        hero.CurrentHealth -= enemy.Damage;
+                        Thread.Sleep(800);
+                    }
+                    db.SaveChanges();
+
+                    if (enemy.Turn && hero!.Turn)
+                    {
+                        hero!.TotalSpeed = hero!.Speed; // Reset på speed
+                        enemy.TotalSpeed = enemy.Speed; // Reset på speed
+                        enemy.Turn = false;
+                        hero!.Turn = false;
+                        db.SaveChanges();
+                    }
+
+                    if (hero.CurrentHealth <= 0 || enemy.CurrentHealth <= 0)
+                    {
+                        
+                        hero!.TotalSpeed = 0;
+                        db.SaveChanges();
+
+                        if (hero.CurrentHealth <= 0)
+                        {
+                            Console.WriteLine("\n" + TextCenter.CenterTexts("Din Hero dog!"));
+                            hero.CurrentHealth = 0;
+                            db.SaveChanges();
+                        }
+                        if (enemy.CurrentHealth <= 0)
+                        {
+                            Console.WriteLine("\n" + TextCenter.CenterTexts($"Du besegrade {enemy.Name}"));
+                        }
+                        break;
+                    }
+                    height++;
+                }
+            }
         }
     }
 }
