@@ -46,13 +46,17 @@ internal class Attack
         }
     }
 
-    public static void Attacking()
+    public static async Task Attacking()
     {
-        var Enemy = ReturningRandomEnemy();
+        using (var db = new MyDbContext())
+        {
+            var Enemy = ReturningRandomEnemy();
+            var Hero = await db.Hero.Where(h => h.UserId == Program.iUser.Id).SingleOrDefaultAsync();
 
-        Console.WriteLine($"{Enemy.Name} - {Enemy.Race} - {Enemy.Class} ");
+            Console.WriteLine($"{Enemy.Name} - {Enemy.Race} - {Enemy.Class} ");
 
-        Console.WriteLine($"Agi: {Enemy.Agility} - Int: {Enemy.Intelligence} - Str: {Enemy.Strength} - Armor: {Enemy.Armor}");
-        Console.WriteLine($"Attack - {Enemy.BaseDamage} - Heal: {Enemy.Healing}");
+            Console.WriteLine($"Agi: {Enemy.Agility} - Int: {Enemy.Intelligence} - Str: {Enemy.Strength} - Armor: {Enemy.Armor}");
+            Console.WriteLine($"Attack - {Enemy.BaseDamage} - Heal: {Enemy.Healing}");
+        }
     }
 }

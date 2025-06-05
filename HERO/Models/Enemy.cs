@@ -66,7 +66,21 @@ internal class Enemy
         Speed = Speed + (Agility * 2);
         MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
         CurrentHealth = MaxHealth;
-        BaseDamage = BaseDamage + (int)(Strength * 1.5) + (int)(Agility * 1);
+        switch (Random.Shared.Next(0, 3))
+        {
+            case 0:
+                BaseDamage = Convert.ToInt32(BaseDamage + (Strength * 1.5) + (Agility * 1));
+                break;
+            case 1:
+                BaseDamage = Convert.ToInt32(BaseDamage + (Strength * 1.4) + (Agility * 0.9));
+                break;
+            case 2:
+                BaseDamage = Convert.ToInt32(BaseDamage + (Strength * 1.3) + (Agility * 0.8));
+                break;
+            default:
+                BaseDamage = Convert.ToInt32(BaseDamage + (Strength * 1.5) + (Agility * 1));
+                break;
+        }
     }
     public void HealerBaseStats()
     {
@@ -78,14 +92,28 @@ internal class Enemy
         Speed = 5;
         MaxHealth = 45;
         BaseDamage = 7;
-        Healing = 2;        
+        Healing = 2;
     }
     public void HealerStats()
     {
         Speed = Speed + (Agility * 2);
         MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
         CurrentHealth = MaxHealth;
-        BaseDamage = BaseDamage + (int)(Intelligence * 1.5) + (int)(Agility);
+        switch (Random.Shared.Next(0, 3))
+        {
+            case 0:
+                BaseDamage = Convert.ToInt32(BaseDamage + (Intelligence * 1.5) + (Agility * 1));
+                break;
+            case 1:
+                BaseDamage = Convert.ToInt32(BaseDamage + (Intelligence * 1.4) + (Agility * 0.9));
+                break;
+            case 2:
+                BaseDamage = Convert.ToInt32(BaseDamage + (Intelligence * 1.3) + (Agility * 0.8));
+                break;
+            default:
+                BaseDamage = Convert.ToInt32(BaseDamage + (Intelligence * 1.5) + (Agility * 1));
+                break;
+        }
         Healing = Healing + (int)(Intelligence * 1);
     }
     public void DpsBaseStats()
@@ -104,7 +132,22 @@ internal class Enemy
         Speed = Speed + (Agility * 2);
         MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
         CurrentHealth = MaxHealth;
-        BaseDamage = BaseDamage + (int)(Agility * 1.5) + (int)(Strength * 1.5);
+        
+        switch (Random.Shared.Next(0, 3))
+        {
+            case 0:
+                BaseDamage = Convert.ToInt32(BaseDamage + (Agility * 1.5) + (Strength * 1.5));
+                break;
+            case 1:
+                BaseDamage = Convert.ToInt32(BaseDamage + (Agility * 1.4) + (Strength * 1.4));
+                break;
+            case 2:
+                BaseDamage = Convert.ToInt32(BaseDamage + (Agility * 1.3) + (Strength * 1.3));
+                break;
+            default:
+                BaseDamage = Convert.ToInt32(BaseDamage + (Agility * 1.5) + (Strength * 1.5));
+                break;
+        }
     }
 }
 
