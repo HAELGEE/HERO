@@ -152,7 +152,7 @@ internal class Attack
                             else if(enemy.Race == "Ghost")
                                 hero.GhostSlain++;
 
-                            Level.XpGain(enemy.Level, hero!.Level);
+                            Level.XpGain((int)enemy.Level!, hero!.Level);
 
 
                             Thread.Sleep(800);
