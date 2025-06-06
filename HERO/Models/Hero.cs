@@ -10,8 +10,13 @@ internal class Hero
     public Hero()
     {
         StatIncrease();
+        MaxXP = GetXPRequiredForLevel(Level);
     }
-
+    int GetXPRequiredForLevel(int level)
+    {
+        return (int)Math.Pow(level, 20) * 10;
+        //return 100 + (int)Math.Pow(level, 10) * 10;
+    }
 
     // Basic saker för hero konto
     public int Id { get; set; }
@@ -34,7 +39,7 @@ internal class Hero
     public string? Username { get; set; } // Username på HERO
     public int Level { get; set; } = 1;
     public int CurrentXP { get; set; } = 0;
-    public int MaxXP { get; set; } = 100;
+    public int MaxXP { get; set; }
     public int? CurrentHealth { get; set; }
     public int? MaxHealth { get; set; }
     public double? BaseDamage { get; set; } = 10;

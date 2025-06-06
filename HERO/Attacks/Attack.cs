@@ -71,14 +71,15 @@ internal class Attack
                 int height = 4;
                 while (true)
                 {
+                    Console.WriteLine(enemy.Level);
                     Color.ChangeColorNewLineTextCenter2($"    Hero: ", $"{hero!.CurrentHealth}", "Green", " - Fiende: ", $"{enemy.CurrentHealth}    ", "Red");
+                    
 
                     Console.SetCursorPosition(0, height);
 
                     hero!.Damage = (int?)(hero.BaseDamage * (100 / (100 + (double?)enemy.Armor)));
                     enemy.Damage = (int?)(enemy.BaseDamage * (100 / (100 + (double?)hero.Armor)));
-                    db.SaveChanges();                                        
-                    
+                    db.SaveChanges();
 
                     // om båda har samma speed, lottning om vem som börjar
                     if (hero!.TotalSpeed == enemy.TotalSpeed)
@@ -150,6 +151,8 @@ internal class Attack
                                 hero.ElfSlain++;
                             else if(enemy.Race == "Ghost")
                                 hero.GhostSlain++;
+
+                            Level.XpGain(enemy.Level, hero!.Level);
 
 
                             Thread.Sleep(800);

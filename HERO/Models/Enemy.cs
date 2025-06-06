@@ -10,6 +10,36 @@ using System.Threading.Tasks;
 namespace HERO.Models;
 internal class Enemy
 {
+    public Enemy()
+    {
+        GettingLevel();
+    }
+
+    void GettingLevel()
+    {
+        using (var db = new MyDbContext())
+        {
+            var hero = db.Hero.Where(h => h.UserId == Program.iUser.Id);
+
+            foreach (var h in hero)
+            {
+                if (h.ActiveHero)
+                {
+                    int randomNumber = Random.Shared.Next(-2, 3);
+
+                    if (h.Level == 1 && randomNumber < 0)
+                        break;
+                    else if (h.Level == 2 && randomNumber < 0)
+                        break;
+                    else
+                    {
+                        Level = h.Level + Random.Shared.Next(-2, 3);
+                        break;
+                    }
+                }
+            }
+        }
+    }
     public int Id { get; set; }
     public string? Name { get; set; }
     public string? Race { get; set; }
@@ -52,11 +82,11 @@ internal class Enemy
 
     public void TankBaseStats()
     {
-        Strength = 1;
-        Stamina = 1;
+        Strength = 1 + (Level * 2);
+        Stamina = 1 + (Level * 1);
         Agility = 1;
         Intelligence = 1;
-        Armor = 4;
+        Armor = 4 + (Level * 2);
         Speed = 5;
         MaxHealth = 50;
         BaseDamage = 7;
@@ -84,10 +114,10 @@ internal class Enemy
     }
     public void HealerBaseStats()
     {
-        Strength = 1;
-        Agility = 1;
-        Intelligence = 1;
-        Stamina = 1;
+        Strength = 1 + (Level * 1);
+        Agility = 1 + (Level * 1);
+        Intelligence = 1 + (Level * 2);
+        Stamina = 1 + (Level * 1);
         Armor = 2;
         Speed = 5;
         MaxHealth = 45;
@@ -114,13 +144,13 @@ internal class Enemy
                 BaseDamage = Convert.ToInt32(BaseDamage + (Intelligence * 1.5) + (Agility * 1));
                 break;
         }
-        Healing = Healing + (int?)(Intelligence * 1);
+        Healing = Healing + (Intelligence * 1);
     }
     public void DpsBaseStats()
     {
-        Strength = 1;
-        Agility = 1;
-        Intelligence = 1;
+        Strength = 1 + (Level * 1);
+        Agility = 1 + (Level * 2);
+        Intelligence = 1 + (Level * 1);
         Stamina = 1;
         Armor = 1;
         Speed = 7;
@@ -132,20 +162,20 @@ internal class Enemy
         Speed = Speed + (Agility * 2);
         MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
         CurrentHealth = MaxHealth;
-        
+
         switch (Random.Shared.Next(0, 3))
         {
             case 0:
-                BaseDamage = Convert.ToInt32(BaseDamage + (Agility * 1.5) + (Strength * 1.5));
+                BaseDamage = Convert.ToInt32(BaseDamage + (Agility * 1.5) + (Strength * 1.3) + (Intelligence * 0.5));
                 break;
             case 1:
                 BaseDamage = Convert.ToInt32(BaseDamage + (Agility * 1.4) + (Strength * 1.4));
                 break;
             case 2:
-                BaseDamage = Convert.ToInt32(BaseDamage + (Agility * 1.3) + (Strength * 1.3));
+                BaseDamage = Convert.ToInt32(BaseDamage + (Agility * 1.3) + (Strength * 1.3) + (Intelligence * 0.2));
                 break;
             default:
-                BaseDamage = Convert.ToInt32(BaseDamage + (Agility * 1.5) + (Strength * 1.5));
+                BaseDamage = Convert.ToInt32(BaseDamage + (Agility * 1.5) + (Strength * 1.3) + (Intelligence * 0.5));
                 break;
         }
     }
