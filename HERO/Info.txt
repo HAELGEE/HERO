@@ -2,7 +2,8 @@
 
 Bygg vidare
 
-1.	Fixa så Titlar fungerar vid Attacker
+1.	Fixa så Titlar fungerar vid Attacker Samt fixa så att Användaren får en varning om att inga titlar finns
+när man inte har några titlar.!
 
 2.	Fixa in motståndare. Huvdras = Orc, Elf, Ghost
 

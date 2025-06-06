@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HERO.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20250604072840_Update1")]
-    partial class Update1
+    [Migration("20250606081447_First")]
+    partial class First
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -92,6 +92,9 @@ namespace HERO.Migrations
                     b.Property<int?>("Armor")
                         .HasColumnType("int");
 
+                    b.Property<double?>("BaseDamage")
+                        .HasColumnType("float");
+
                     b.Property<int?>("Charm")
                         .HasColumnType("int");
 
@@ -137,7 +140,7 @@ namespace HERO.Migrations
                     b.Property<int?>("Strength")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalSpeed")
+                    b.Property<int?>("TotalSpeed")
                         .HasColumnType("int");
 
                     b.Property<bool>("Turn")
@@ -214,8 +217,8 @@ namespace HERO.Migrations
                     b.Property<int?>("Armor")
                         .HasColumnType("int");
 
-                    b.Property<int?>("BaseDamage")
-                        .HasColumnType("int");
+                    b.Property<double?>("BaseDamage")
+                        .HasColumnType("float");
 
                     b.Property<int?>("Charm")
                         .HasColumnType("int");
@@ -271,7 +274,7 @@ namespace HERO.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TotalSpeed")
+                    b.Property<int?>("TotalSpeed")
                         .HasColumnType("int");
 
                     b.Property<bool>("Turn")
