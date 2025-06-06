@@ -18,7 +18,7 @@ internal class Load
             {
                 Console.Clear();
                 Entity.GettingAllHerosForUser();
-                Console.WriteLine(TextCenter.CenterTexts("B för att backa"));
+                Console.WriteLine(TextCenter.CenterTexts("B för att bakåt"));
                 Console.WriteLine(TextCenter.CenterTexts("Vilken Hero vill du välja? [Välj genom att skriva in namnet på din Hero]"));
 
                 var position = Console.GetCursorPosition();

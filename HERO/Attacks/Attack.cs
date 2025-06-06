@@ -53,8 +53,8 @@ internal class Attack
         using (var db = new MyDbContext())
         {
             var enemy = ReturningRandomEnemy();
-            var hero = await db.Hero.Where(h => h.UserId == Program.iUser.Id && h.ActiveHero == true).SingleOrDefaultAsync();
-            //var hero = await db.Hero.Where(h => h.Id == 2).SingleOrDefaultAsync(); // tillfälligt lagt in denna för att se så det fungerar
+            //var hero = await db.Hero.Where(h => h.UserId == Program.iUser.Id && h.ActiveHero == true).SingleOrDefaultAsync();
+            var hero = await db.Hero.Where(h => h.Id == 2).SingleOrDefaultAsync(); // tillfälligt lagt in denna för att se så det fungerar
 
             enemy.Turn = false;
             hero!.Turn = false;
@@ -69,12 +69,13 @@ internal class Attack
             else
             {
                 int height = 4;
+                Console.WriteLine();
                 while (true)
                 {
-                    Console.WriteLine(enemy.Level); // VARFÅR FÅR JAG MINUS 1 HÄR?????
+                    Console.WriteLine(enemy.Level);
                     Color.ChangeColorNewLineTextCenter2($"    Hero: ", $"{hero!.CurrentHealth}", "Green", " - Fiende: ", $"{enemy.CurrentHealth}    ", "Red");
                     
-
+                    
                     Console.SetCursorPosition(0, height);
 
                     hero!.Damage = (int?)(hero.BaseDamage * (100 / (100 + (double?)enemy.Armor)));
@@ -137,6 +138,9 @@ internal class Attack
                         {
                             Console.WriteLine("\n" + TextCenter.CenterTexts("Din Hero dog!"));
                             Thread.Sleep(800);
+
+                            hero!.CurrentHealth = 0;
+                            db.SaveChanges();
 
                             Menu.Menu.HealingMenu();                           
 

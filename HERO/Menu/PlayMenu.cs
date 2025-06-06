@@ -24,7 +24,7 @@ internal class PlayMenu
             "Öppna Shopen",
             "Meditera (Heala din hjälte)",
             "Dungeons",
-            "Backa"
+            "Bakåt"
             };
         int menuSelecter = 0;
 

@@ -35,7 +35,7 @@ public class Menu
                     menuChoice1.Add("\u001b[3mSkapa Hero\u001b[0m");
                     menuChoice1.Add("\x1b[3mLogga ut\x1b[0m");
                     menuChoice1.Add("\x1b[3mHero Information\x1b[0m");
-                    menuChoice1.Add("\x1b[3mSpara/Ladda Hero\x1b[0m");
+                    menuChoice1.Add("\x1b[3mLadda Hero\x1b[0m");
                     menuChoice1.Add("\x1b[3mSpela\x1b[0m");
                     menuChoice1.Add("\x1b[3mAvsluta\x1b[0m");
 
@@ -125,62 +125,7 @@ public class Menu
                             break;
 
                         case 3:
-
-                            int menuSelecter2 = 0;
-                            bool menu2 = true;
-                            while (menu2)
-                            {
-                                Console.Clear();
-                                List<string> menuChoice2 = new List<string>();
-
-                                menuChoice2.Add("Spara nuvarande Hero");
-                                menuChoice2.Add("Ladda Hero");
-                                menuChoice2.Add("Backa");
-
-                                for (int i = 0; i < menuChoice2.Count; i++)
-                                {
-                                    if (i == 0)
-                                        Console.WriteLine($"\n\n\n\n\n\n\n\n");
-                                    if (i == menuSelecter2)
-                                    {
-                                        Console.ForegroundColor = ConsoleColor.Green;
-                                        Console.WriteLine(TextCenter.CenterMenu($"{menuChoice2[i]}\t <---"));
-                                        Console.ResetColor();
-                                        Console.CursorVisible = false;
-                                    }
-                                    else
-                                        Console.WriteLine(TextCenter.CenterTexts(menuChoice2[i]));
-                                }
-
-                                var key2 = Console.ReadKey(true).Key;
-
-                                if (key2 == ConsoleKey.DownArrow && menuSelecter2 < menuChoice2.Count - 1)
-                                {
-                                    menuSelecter2++;
-                                }
-                                else if (key2 == ConsoleKey.UpArrow && menuSelecter2 >= 1)
-                                {
-                                    menuSelecter2--;
-                                }
-                                else if (key2 == ConsoleKey.Enter)
-                                {
-                                    switch (menuSelecter2)
-                                    {
-                                        case 0:
-                                            Save.SavingHero();
-                                            break;
-
-                                        case 1:
-                                            Load.LoadingHero();
-                                            break;
-
-                                        case 2:
-                                            menu2 = false;
-                                            break;
-                                    }
-                                }
-
-                            }
+                            Load.LoadingHero();
                             break;
 
                         case 4:
@@ -288,9 +233,9 @@ public class Menu
                             Console.ReadKey();
                             menu = false;
                             break;
-                        }                        
+                        }
                     }
-                    
+
                 }
                 break;
             }
