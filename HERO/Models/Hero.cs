@@ -40,7 +40,7 @@ internal class Hero
     public string? Username { get; set; } // Username på HERO
     public int Level { get; set; } = 1;
     public int CurrentXP { get; set; } = 0;
-    public int MaxXP { get; set; } = 200;
+    public int MaxXP { get; set; } = 100;
     public int? CurrentHealth { get; set; }
     public int? MaxHealth { get; set; }
     public double? BaseDamage { get; set; } = 10;

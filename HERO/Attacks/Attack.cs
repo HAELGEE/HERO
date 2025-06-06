@@ -71,7 +71,7 @@ internal class Attack
                 int height = 4;
                 while (true)
                 {
-                    Console.WriteLine(enemy.Level);
+                    Console.WriteLine(enemy.Level); // VARFÅR FÅR JAG MINUS 1 HÄR?????
                     Color.ChangeColorNewLineTextCenter2($"    Hero: ", $"{hero!.CurrentHealth}", "Green", " - Fiende: ", $"{enemy.CurrentHealth}    ", "Red");
                     
 
