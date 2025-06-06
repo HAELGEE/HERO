@@ -2,7 +2,6 @@
 
 Bygg vidare
 
-När man attackerar och möter Gravemourn så blir det ngn bugg? Fienden får inget hp och man gör 0 i skada???
 
 1.	Fixa så Titlar fungerar vid Attacker Samt fixa så att Användaren får en varning om att inga titlar finns
 när man inte har några titlar.!
