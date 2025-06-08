@@ -71,69 +71,71 @@ internal class Level
                 {
                     foreach (var h in hero!)
                     {
-
-                        Console.WriteLine("\n\n\n\n\n\n\n\n\n\n");
-
-                        while (h.StatsIncrease > 0)
+                        if (h.ActiveHero)
                         {
-                            Console.Clear();
-                            Console.WriteLine(TextCenter.CenterTexts($"Du har {h.StatsIncrease} stats kvar att öka"));
-                            Console.WriteLine(TextCenter.CenterTexts("Vilken stat vill du öka?") + "\n");
-                            List<string> menuChoice = new List<string>()
+                            Console.WriteLine("\n\n\n\n\n\n\n\n\n\n");
+
+                            while (h.StatsIncrease > 0)
+                            {
+                                Console.Clear();
+                                Console.WriteLine(TextCenter.CenterTexts($"Du har {h.StatsIncrease} stats kvar att öka"));
+                                Console.WriteLine(TextCenter.CenterTexts("Vilken stat vill du öka?") + "\n");
+                                List<string> menuChoice = new List<string>()
                                 {
                                     "Styrka",
                                     "Agility",
                                     "Intelligence",
                                     "Charm"
                                 };
-                            List<Action> menuActions = new List<Action>();
+                                List<Action> menuActions = new List<Action>();
 
-                            foreach (var stat in menuChoice)
-                            {
-                                var whichStat = stat;
-                                menuActions.Add(() => StatIncrease(whichStat, h));
-                            }
-
-                            for (int i = 0; i < menuChoice.Count; i++)
-                            {
-                                if (i == 0)
-                                    Console.WriteLine($"\n\n\n");
-                                if (i == menuSelecter)
+                                foreach (var stat in menuChoice)
                                 {
-                                    Console.ForegroundColor = ConsoleColor.Green;
-                                    Console.WriteLine(TextCenter.CenterMenu($"{menuChoice[i]}\t <---"));
-                                    Console.ResetColor();
-                                    Console.CursorVisible = false;
+                                    var whichStat = stat;
+                                    menuActions.Add(() => StatIncrease(whichStat, h));
                                 }
-                                else
-                                    Console.WriteLine(TextCenter.CenterTexts(menuChoice[i]));
-                            }
 
-                            var key = Console.ReadKey(true).Key;
-
-                            if (key == ConsoleKey.DownArrow && menuSelecter < menuChoice.Count - 1)
-                            {
-                                menuSelecter++;
-                            }
-                            else if (key == ConsoleKey.UpArrow && menuSelecter >= 1)
-                            {
-                                menuSelecter--;
-                            }
-                            else if (key == ConsoleKey.Enter)
-                            {
-                                if (menuSelecter >= 0 && menuSelecter < menuActions.Count)
+                                for (int i = 0; i < menuChoice.Count; i++)
                                 {
-                                    Console.Clear();
-                                    menuActions[menuSelecter].Invoke();  // Kör rätt funktion baserat på menyval
-                                    h.StatsIncrease--;
-                                    db.SaveChanges();
+                                    if (i == 0)
+                                        Console.WriteLine($"\n\n\n");
+                                    if (i == menuSelecter)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Green;
+                                        Console.WriteLine(TextCenter.CenterMenu($"{menuChoice[i]}\t <---"));
+                                        Console.ResetColor();
+                                        Console.CursorVisible = false;
+                                    }
+                                    else
+                                        Console.WriteLine(TextCenter.CenterTexts(menuChoice[i]));
+                                }
+
+                                var key = Console.ReadKey(true).Key;
+
+                                if (key == ConsoleKey.DownArrow && menuSelecter < menuChoice.Count - 1)
+                                {
+                                    menuSelecter++;
+                                }
+                                else if (key == ConsoleKey.UpArrow && menuSelecter >= 1)
+                                {
+                                    menuSelecter--;
+                                }
+                                else if (key == ConsoleKey.Enter)
+                                {
+                                    if (menuSelecter >= 0 && menuSelecter < menuActions.Count)
+                                    {
+                                        Console.Clear();
+                                        menuActions[menuSelecter].Invoke();  // Kör rätt funktion baserat på menyval
+                                        h.StatsIncrease--;
+                                        db.SaveChanges();
+                                    }
                                 }
                             }
+                            LevelStatIncrease();
+                            db.SaveChanges();
+                            menu = false;
+                            break;
                         }
-                        LevelStatIncrease();
-                        db.SaveChanges();
-                        menu = false;
-                        break;
                     }
                     break;
                 }
@@ -181,7 +183,7 @@ internal class Level
             hero!.MaxHealth = 50 + (hero.Strength * 5) + (hero.Stamina * 3);
             hero.Speed = 5 + (hero.Agility * 1);
             hero.CurrentHealth = hero.MaxHealth;
-            hero.BaseDamage = Convert.ToInt32(10 + (hero.Strength * 1.5) + (hero.Agility * 1.5));
+            hero.BaseDamage = Convert.ToInt32(hero.StartDamage + (hero.Strength * 1.5) + (hero.Agility * 1.5));
             db.SaveChanges();
         }
     }

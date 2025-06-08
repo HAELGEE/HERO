@@ -44,7 +44,8 @@ internal class Hero
     public int MaxXP { get; set; } = 100;
     public int? CurrentHealth { get; set; }
     public int? MaxHealth { get; set; }
-    public double? BaseDamage { get; set; } = 10;
+    public int StartDamage { get; set; } = 13;
+    public double? BaseDamage { get; set; } = 13;
     public int? Damage { get; set; } = 0;
     public int? Armor { get; set; } = 2;
     public int? Strength { get; set; } = 2;
@@ -82,10 +83,14 @@ internal class Hero
 
     public void StatIncrease()
     {
-        MaxHealth = 60 + (Strength * 5) + (Stamina * 3);
-        Speed = 5 + (Agility * 1);
-        CurrentHealth = MaxHealth;
-        BaseDamage = Convert.ToInt32(BaseDamage + (Strength * 1.5) + (Agility * 1.5));
-    }  
+        using (var db = new MyDbContext())
+        {
+            MaxHealth = 60 + (Strength * 5) + (Stamina * 3);
+            Speed = 5 + (Agility * 1);
+            CurrentHealth = MaxHealth;
+            BaseDamage = Convert.ToInt32(StartDamage + (Strength * 1.5) + (Agility * 1.5));
+            db.SaveChanges();
+        }
+    }
 
 }

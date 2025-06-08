@@ -37,6 +37,7 @@ internal class PlayMenu
             {
                 var heroStat = db.Hero.Where(h => h.UserId == Program.iUser.Id && h.ActiveHero).SingleOrDefault();
 
+                // Denna raden är true och fungerande
                 if (heroStat != null && heroStat.StatsIncrease > 0)
                 {
                     Level.LevelUpStats();
