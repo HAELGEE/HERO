@@ -10,11 +10,11 @@ internal class Hero
     public Hero()
     {
         StatIncrease();
-        MaxXP = GetXPRequiredForLevel(MaxXP);
     }
-    public static int GetXPRequiredForLevel(int maxXP)
+    public static void GetXPRequiredForLevel(Hero h)
     {
-        return maxXP * 2;
+        h.CurrentXP = h.CurrentXP - h.MaxXP;
+        h.MaxXP = h.MaxXP * 2;
         //return (int)Math.Pow(level, 20) * 10;
         //return 100 + (int)Math.Pow(level, 10) * 10;
     }
@@ -41,7 +41,8 @@ internal class Hero
     public int Level { get; set; } = 1;
     public int StatsIncrease { get; set; } = 0;
     public int CurrentXP { get; set; } = 0;
-    public int MaxXP { get; set; } = 100;
+    public int MaxXP { get; set; } = 200;
+    public int StartHealth { get; set; } = 60;
     public int? CurrentHealth { get; set; }
     public int? MaxHealth { get; set; }
     public int StartDamage { get; set; } = 13;
@@ -85,7 +86,7 @@ internal class Hero
     {
         using (var db = new MyDbContext())
         {
-            MaxHealth = 60 + (Strength * 5) + (Stamina * 3);
+            MaxHealth = StartHealth + (Strength * 5) + (Stamina * 3);
             Speed = 5 + (Agility * 1);
             CurrentHealth = MaxHealth;
             BaseDamage = Convert.ToInt32(StartDamage + (Strength * 1.5) + (Agility * 1.5));

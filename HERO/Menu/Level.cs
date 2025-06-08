@@ -32,11 +32,11 @@ internal class Level
 
                     if (h.CurrentXP >= h.MaxXP)
                     {
-                        h.CurrentXP = h.CurrentXP - h.MaxXP;
+                        
                         h.Level++;
                         h.StatsIncrease = 4;
                         db.SaveChanges();
-                        Hero.GetXPRequiredForLevel(h.MaxXP);
+                        Hero.GetXPRequiredForLevel(h);
                         db.SaveChanges();
                         Console.WriteLine(TextCenter.CenterTexts("Du Gick upp i Level!"));
                         Console.WriteLine(TextCenter.CenterTexts($"Du är nu på Level: {h.Level}"));
@@ -180,7 +180,7 @@ internal class Level
         {
             var hero = db.Hero.Where(h => h.UserId == Program.iUser.Id && h.ActiveHero == true).FirstOrDefault();
 
-            hero!.MaxHealth = 50 + (hero.Strength * 5) + (hero.Stamina * 3);
+            hero!.MaxHealth = hero.StartHealth + (hero.Strength * 5) + (hero.Stamina * 3);
             hero.Speed = 5 + (hero.Agility * 1);
             hero.CurrentHealth = hero.MaxHealth;
             hero.BaseDamage = Convert.ToInt32(hero.StartDamage + (hero.Strength * 1.5) + (hero.Agility * 1.5));
