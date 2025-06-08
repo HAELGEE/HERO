@@ -33,9 +33,16 @@ internal class PlayMenu
         while (spel)
         {
             Menu.LookingTitle(); // Till för att kolla om man dödat tillräcklig för att uppnå Titlar
-            Level.LevelUpStats();
-            Level.LevelStatIncrease();
+            using (var db = new MyDbContext())
+            {
+                var heroStat = db.Hero.Where(h => h.UserId == Program.iUser.Id && h.ActiveHero).SingleOrDefault();
 
+                if (heroStat != null && heroStat.StatsIncrease > 0)
+                {
+                    Level.LevelUpStats();
+                    Level.LevelStatIncrease();
+                }
+            }
             Console.Clear();
             Console.WriteLine();
             Console.WriteLine(TextCenter.CenterTexts($"A game created by #Christofer Hägg"));
