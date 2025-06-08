@@ -29,13 +29,13 @@ internal class Enemy
 
                     if (h.Level == 1 && randomNumber < 0)
                     {
-                        int lowLevelRandom = Random.Shared.Next(1, 4);
+                        int lowLevelRandom = Random.Shared.Next(0, 3);
                         Level = h.Level + lowLevelRandom;
                         break;
                     }
                     else if (h.Level == 2 && randomNumber < 0)
                     {
-                        int lowLevelRandom = Random.Shared.Next(1, 5);
+                        int lowLevelRandom = Random.Shared.Next(-1, 3);
                         Level = h.Level + lowLevelRandom;
                         break;
                     }
