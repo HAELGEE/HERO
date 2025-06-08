@@ -531,7 +531,7 @@ public class Menu
             Console.WriteLine(TextCenter.CenterTexts("Intelligence: " + hero.Intelligence));
             Console.WriteLine(TextCenter.CenterTexts("Charm: " + hero.Charm));
             Console.WriteLine(TextCenter.CenterTexts("Speed: " + hero.Speed));
-            Console.WriteLine(TextCenter.CenterTexts("DMG: " + hero.Damage));
+            Console.WriteLine(TextCenter.CenterTexts("DMG: " + hero.BaseDamage));
             Console.WriteLine(TextCenter.CenterTexts("ARMOR: " + hero.Armor));
             Console.WriteLine(TextCenter.CenterTexts($"LifeSteal: {hero.Lifesteal}"));
             Console.WriteLine(TextCenter.CenterTexts("==========================================================="));

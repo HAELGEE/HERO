@@ -151,10 +151,9 @@ internal class Create
                             Username = heroName,
                             UserId = Program.iUser.Id
                         });
+                        db.SaveChanges();
 
                         Color.ChangeColor(TextCenter.CenterTexts("Din Hero skapades framgångsrikt"), "Green");
-
-                        db.SaveChanges();
                         Thread.Sleep(1500);
                         break;
                     }
