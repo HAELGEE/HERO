@@ -70,12 +70,12 @@ internal class Attack
             {
                 int height = 4;
                 Console.WriteLine();
+                Color.ChangeColorNewLineTextCenter2($"    Hero: ", $"{hero!.CurrentHealth}", "Green", " - Fiende: ", $"{enemy.CurrentHealth}    ", "Red");
                 while (true)
                 {
                     //Console.WriteLine(enemy.Level);
-                    Color.ChangeColorNewLineTextCenter2($"    Hero: ", $"{hero!.CurrentHealth}", "Green", " - Fiende: ", $"{enemy.CurrentHealth}    ", "Red");
-                    
-                    
+
+
                     Console.SetCursorPosition(0, height);
 
                     hero!.Damage = (int?)(hero.BaseDamage * (100 / (100 + (double?)enemy.Armor)));
@@ -119,6 +119,8 @@ internal class Attack
                     }
                     db.SaveChanges();
 
+
+
                     if (enemy.Turn && hero!.Turn)
                     {
                         hero!.TotalSpeed = hero!.Speed; // Reset på speed
@@ -127,33 +129,46 @@ internal class Attack
                         hero!.Turn = false;
                         db.SaveChanges();
                     }
-
-                    if (hero.CurrentHealth <= 0 || enemy.CurrentHealth <= 0)
+                    if (hero.CurrentHealth > 0 || enemy.CurrentHealth > 0)
                     {
-                        
+                        Color.ChangeColorNewLineTextCenter2($"    Hero: ", $"{hero!.CurrentHealth}", "Green", " - Fiende: ", $"{enemy.CurrentHealth}    ", "Red");
+                        Console.SetCursorPosition(0, height);
+                    }
+                    else if (hero.CurrentHealth <= 0 || enemy.CurrentHealth <= 0)
+                    {
+                         
                         hero!.TotalSpeed = 0;
                         db.SaveChanges();
 
                         if (hero.CurrentHealth <= 0)
                         {
-                            Console.WriteLine("\n" + TextCenter.CenterTexts("Din Hero dog!"));
-                            Thread.Sleep(800);
-
                             hero!.CurrentHealth = 0;
                             db.SaveChanges();
 
-                            Menu.Menu.HealingMenu();                           
+                            Color.ChangeColorNewLineTextCenter2($"    Hero: ", $"{hero!.CurrentHealth}", "Green", " - Fiende: ", $"{enemy.CurrentHealth}    ", "Red");
+                            Console.SetCursorPosition(0, height);
+
+                            Console.WriteLine("\n" + TextCenter.CenterTexts("Din Hero dog!"));
+                            Thread.Sleep(800);
+
+
+                            Menu.Menu.HealingMenu();
 
                             db.SaveChanges();
                         }
                         if (enemy.CurrentHealth <= 0)
                         {
+                            enemy.CurrentHealth = 0;
+
+                            Color.ChangeColorNewLineTextCenter2($"    Hero: ", $"{hero!.CurrentHealth}", "Green", " - Fiende: ", $"{enemy.CurrentHealth}    ", "Red");
+                            Console.SetCursorPosition(0, height);
+
                             Console.WriteLine("\n" + TextCenter.CenterTexts($"Du besegrade {enemy.Name}"));
                             if (enemy.Race == "Orc")
                                 hero.OrcSlain++;
-                            else if(enemy.Race == "Elf")
+                            else if (enemy.Race == "Elf")
                                 hero.ElfSlain++;
-                            else if(enemy.Race == "Ghost")
+                            else if (enemy.Race == "Ghost")
                                 hero.GhostSlain++;
 
                             Level.XpGain((int)enemy.Level!, hero!.Level);

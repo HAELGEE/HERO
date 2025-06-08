@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HERO.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20250608205253_First")]
+    [Migration("20250608212001_First")]
     partial class First
     {
         /// <inheritdoc />
@@ -269,6 +269,9 @@ namespace HERO.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("StartDamage")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StartHealth")
                         .HasColumnType("int");
 
                     b.Property<int>("StatsIncrease")

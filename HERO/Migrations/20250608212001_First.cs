@@ -77,6 +77,7 @@ namespace HERO.Migrations
                     StatsIncrease = table.Column<int>(type: "int", nullable: false),
                     CurrentXP = table.Column<int>(type: "int", nullable: false),
                     MaxXP = table.Column<int>(type: "int", nullable: false),
+                    StartHealth = table.Column<int>(type: "int", nullable: false),
                     CurrentHealth = table.Column<int>(type: "int", nullable: true),
                     MaxHealth = table.Column<int>(type: "int", nullable: true),
                     StartDamage = table.Column<int>(type: "int", nullable: false),
