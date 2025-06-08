@@ -2,8 +2,7 @@
 
 Bygg vidare
 
-Bygga på StatIncrease till Hero efter varje Level up!
-	Att man själv får välja vad det är man vill öka!
+Måste fixa så det inte ökas med baseDamage Efter VARJE attack man gör ( eller rättare sagt för varje menuval man gör)
 
 
 1.	Fixa så Titlar fungerar vid Attacker Samt fixa så att Användaren får en varning om att inga titlar finns
