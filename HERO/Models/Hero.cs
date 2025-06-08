@@ -83,7 +83,7 @@ internal class Hero
     public void StatIncrease()
     {
         MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
-        Speed = 5 + (Agility * 2);
+        Speed = 5 + (Agility * 1);
         CurrentHealth = MaxHealth;
         BaseDamage = Convert.ToInt32(BaseDamage + (Strength * 1.5) + (Agility * 1.5));
     }  

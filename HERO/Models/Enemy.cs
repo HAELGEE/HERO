@@ -101,7 +101,7 @@ internal class Enemy
     }
     public void TankStats()
     {
-        Speed = Speed + (Agility * 2);
+        Speed = Speed + (Agility * 1);
         MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
         CurrentHealth = MaxHealth;
         switch (Random.Shared.Next(0, 3))
@@ -134,7 +134,7 @@ internal class Enemy
     }
     public void HealerStats()
     {
-        Speed = Speed + (Agility * 2);
+        Speed = Speed + (Agility * 1);
         MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
         CurrentHealth = MaxHealth;
         switch (Random.Shared.Next(0, 3))
@@ -167,7 +167,7 @@ internal class Enemy
     }
     public void DpsStats()
     {
-        Speed = Speed + (Agility * 2);
+        Speed = Speed + (Convert.ToInt32(Agility * 1.2));
         MaxHealth = 50 + (Strength * 5) + (Stamina * 3);
         CurrentHealth = MaxHealth;
 
