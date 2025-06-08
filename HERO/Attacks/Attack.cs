@@ -72,7 +72,7 @@ internal class Attack
                 Console.WriteLine();
                 while (true)
                 {
-                    Console.WriteLine(enemy.Level);
+                    //Console.WriteLine(enemy.Level);
                     Color.ChangeColorNewLineTextCenter2($"    Hero: ", $"{hero!.CurrentHealth}", "Green", " - Fiende: ", $"{enemy.CurrentHealth}    ", "Red");
                     
                     
