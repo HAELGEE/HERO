@@ -53,8 +53,8 @@ internal class Attack
         using (var db = new MyDbContext())
         {
             var enemy = ReturningRandomEnemy();
-            //var hero = await db.Hero.Where(h => h.UserId == Program.iUser.Id && h.ActiveHero == true).SingleOrDefaultAsync();
-            var hero = await db.Hero.Where(h => h.Id == 2).SingleOrDefaultAsync(); // tillfälligt lagt in denna för att se så det fungerar
+            var hero = await db.Hero.Where(h => h.UserId == Program.iUser.Id && h.ActiveHero == true).SingleOrDefaultAsync();
+            //var hero = await db.Hero.Where(h => h.Id == 2).SingleOrDefaultAsync(); // tillfälligt lagt in denna för att se så det fungerar
 
             enemy.Turn = false;
             hero!.Turn = false;

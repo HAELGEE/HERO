@@ -33,6 +33,7 @@ internal class PlayMenu
         while (spel)
         {
             Menu.LookingTitle(); // Till för att kolla om man dödat tillräcklig för att uppnå Titlar
+            Level.LevelUpStats();
 
             Console.Clear();
             Console.WriteLine();

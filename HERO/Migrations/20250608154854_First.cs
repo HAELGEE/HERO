@@ -74,6 +74,7 @@ namespace HERO.Migrations
                     UserId = table.Column<int>(type: "int", nullable: true),
                     Username = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Level = table.Column<int>(type: "int", nullable: false),
+                    StatsIncrease = table.Column<int>(type: "int", nullable: false),
                     CurrentXP = table.Column<int>(type: "int", nullable: false),
                     MaxXP = table.Column<int>(type: "int", nullable: false),
                     CurrentHealth = table.Column<int>(type: "int", nullable: true),

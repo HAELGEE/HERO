@@ -265,6 +265,9 @@ namespace HERO.Migrations
                     b.Property<int?>("Stamina")
                         .HasColumnType("int");
 
+                    b.Property<int>("StatsIncrease")
+                        .HasColumnType("int");
+
                     b.Property<int?>("Strength")
                         .HasColumnType("int");
 

@@ -39,6 +39,7 @@ internal class Hero
     // Hero attributs
     public string? Username { get; set; } // Username på HERO
     public int Level { get; set; } = 1;
+    public int StatsIncrease { get; set; } = 0;
     public int CurrentXP { get; set; } = 0;
     public int MaxXP { get; set; } = 100;
     public int? CurrentHealth { get; set; }

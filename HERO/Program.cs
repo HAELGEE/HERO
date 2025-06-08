@@ -16,6 +16,7 @@ namespace HERO
             {
                 await Menu.Menu.StartMenu();
                 //await Attack.Attacking();
+                //Level.LevelUpStats();
             }
         }
     }

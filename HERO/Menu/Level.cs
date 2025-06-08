@@ -33,10 +33,15 @@ internal class Level
                     {
                         h.CurrentXP = h.CurrentXP - h.MaxXP;
                         h.Level++;
+                        h.StatsIncrease = 4;
+                        db.SaveChanges();
                         Hero.GetXPRequiredForLevel(h.MaxXP);
                         db.SaveChanges();
                         Console.WriteLine(TextCenter.CenterTexts("Du Gick upp i Level!"));
                         Console.WriteLine(TextCenter.CenterTexts($"Du är nu på Level: {h.Level}"));
+                        Thread.Sleep(1000);
+
+                        LevelUpStats();
                     }
                     break;
                 }
@@ -46,132 +51,120 @@ internal class Level
     public static void LevelUpStats()
     {
         Console.Clear();
-        int levelIncrease = 0;
-
-        bool menu = true;
-        while (menu)
+        using (var db = new MyDbContext())
         {
-            using (var db = new MyDbContext())
+            var hero = db.Hero.Where(h => h.UserId == Program.iUser.Id).ToList();
+            
+            bool found = false;
+            foreach (var h in hero)
             {
-                var hero = db.Hero.Where(h => h.UserId == Program.iUser.Id).ToList();
+                if (h.ActiveHero && h.StatsIncrease > 0)
+                    found = true;
+            }
 
-                foreach (var h in hero)
+            if (found)
+            {
+                bool menu = true;
+                int menuSelecter = 0;
+                while (menu)
                 {
-                    if (h.ActiveHero == true)
+                    foreach (var h in hero!)
                     {
-                        var titles = db.Title.Where(t => t.HeroId == h.Id).ToList();
 
                         Console.WriteLine("\n\n\n\n\n\n\n\n\n\n");
-                        if (titles != null)
+
+                        while (h.StatsIncrease > 0)
                         {
-                            int menuSelecter = 0;
-                            int counter = 4;
-                            while (counter <= 0)
-                            {
-                                Console.Clear();
-                                Console.WriteLine(TextCenter.CenterTexts($"Du har {counter} stats kvar att öka"));
-                                Console.WriteLine(TextCenter.CenterTexts("Vilken stat vill du öka?") + "\n");
-                                List<string> menuChoice = new List<string>()
+                            Console.Clear();
+                            Console.WriteLine(TextCenter.CenterTexts($"Du har {h.StatsIncrease} stats kvar att öka"));
+                            Console.WriteLine(TextCenter.CenterTexts("Vilken stat vill du öka?") + "\n");
+                            List<string> menuChoice = new List<string>()
                                 {
                                     "Styrka",
                                     "Agility",
                                     "Intelligence",
                                     "Charm"
                                 };
-                                List<Action> menuActions = new List<Action>();
+                            List<Action> menuActions = new List<Action>();
 
-                                foreach (var stat in menuChoice)
-                                {
-                                    menuActions.Add(() => StatIncrease(stat));
-                                }
+                            foreach (var stat in menuChoice)
+                            {
+                                var whichStat = stat;
+                                menuActions.Add(() => StatIncrease(whichStat, h));
+                            }
 
-                                for (int i = 0; i < menuChoice.Count; i++)
+                            for (int i = 0; i < menuChoice.Count; i++)
+                            {
+                                if (i == 0)
+                                    Console.WriteLine($"\n\n\n");
+                                if (i == menuSelecter)
                                 {
-                                    if (i == 0)
-                                        Console.WriteLine($"\n\n\n");
-                                    if (i == menuSelecter)
-                                    {
-                                        Console.ForegroundColor = ConsoleColor.Green;
-                                        Console.WriteLine(TextCenter.CenterMenu($"{menuChoice[i]}\t <---"));
-                                        Console.ResetColor();
-                                        Console.CursorVisible = false;
-                                    }
-                                    else
-                                        Console.WriteLine(TextCenter.CenterTexts(menuChoice[i]));
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine(TextCenter.CenterMenu($"{menuChoice[i]}\t <---"));
+                                    Console.ResetColor();
+                                    Console.CursorVisible = false;
                                 }
+                                else
+                                    Console.WriteLine(TextCenter.CenterTexts(menuChoice[i]));
+                            }
 
-                                var key = Console.ReadKey(true).Key;
+                            var key = Console.ReadKey(true).Key;
 
-                                if (key == ConsoleKey.DownArrow && menuSelecter < menuChoice.Count - 1)
+                            if (key == ConsoleKey.DownArrow && menuSelecter < menuChoice.Count - 1)
+                            {
+                                menuSelecter++;
+                            }
+                            else if (key == ConsoleKey.UpArrow && menuSelecter >= 1)
+                            {
+                                menuSelecter--;
+                            }
+                            else if (key == ConsoleKey.Enter)
+                            {
+                                if (menuSelecter >= 0 && menuSelecter < menuActions.Count)
                                 {
-                                    menuSelecter++;
-                                }
-                                else if (key == ConsoleKey.UpArrow && menuSelecter >= 1)
-                                {
-                                    menuSelecter--;
-                                }
-                                else if (key == ConsoleKey.Enter)
-                                {
-                                    if (menuSelecter >= 0 && menuSelecter < menuActions.Count)
-                                    {
-                                        Console.Clear();
-                                        menuActions[menuSelecter].Invoke();  // Kör rätt funktion baserat på menyval
-                                        counter--;
-                                    }
+                                    Console.Clear();
+                                    menuActions[menuSelecter].Invoke();  // Kör rätt funktion baserat på menyval
+                                    h.StatsIncrease--;
+                                    db.SaveChanges();
                                 }
                             }
-                            menu = false;
-                            break;
                         }
-
+                        menu = false;
+                        break;
                     }
-
+                    break;
                 }
-                break;
             }
+
         }
-
-
     }
-    static void StatIncrease(string input)
+    static void StatIncrease(string input, Hero h)
     {
-        using (var db = new MyDbContext())
+        if (h.ActiveHero)
         {
-            var hero = db.Hero.Where(h => h.UserId == Program.iUser.Id).ToList();
-
-            foreach (var h in hero)
+            if (input.ToLower() == "styrka")
             {
-                if (h.ActiveHero)
-                {
-                    if (input.ToLower() == "styrka")
-                    {
-                        Console.WriteLine("Du ökade din Styrka med 1");
-                        h.Strength++;
-                        db.SaveChanges();
-                        break;
-                    }
-                    else if (input.ToLower() == "agility")
-                    {
-                        Console.WriteLine("Du ökade din Agility med 1");
-                        h.Agility++;
-                        db.SaveChanges();
-                        break;
-                    }
-                    else if (input.ToLower() == "intelligence")
-                    {
-                        Console.WriteLine("Du ökade din Intelligence med 1");
-                        h.Intelligence++;
-                        db.SaveChanges();
-                        break;
-                    }
-                    else if (input.ToLower() == "charm")
-                    {
-                        Console.WriteLine("Du ökade din Charm med 1");
-                        h.Charm++;
-                        db.SaveChanges();
-                        break;
-                    }
-                }
+                Console.WriteLine(TextCenter.CenterTexts("Du ökade din Styrka med 1"));
+                h.Strength++;
+                Thread.Sleep(1000);
+            }
+            else if (input.ToLower() == "agility")
+            {
+                Console.WriteLine(TextCenter.CenterTexts("Du ökade din Agility med 1"));
+                h.Agility++;
+                Thread.Sleep(1000);
+            }
+            else if (input.ToLower() == "intelligence")
+            {
+                Console.WriteLine(TextCenter.CenterTexts("Du ökade din Intelligence med 1"));
+                h.Intelligence++;
+                Thread.Sleep(1000);
+            }
+            else if (input.ToLower() == "charm")
+            {
+                Console.WriteLine(TextCenter.CenterTexts("Du ökade din Charm med 1"));
+                h.Charm++;
+                Thread.Sleep(1000);
             }
         }
     }
