@@ -248,23 +248,26 @@ public class Menu
             // Kontroll så man är inne på rätt Hero            
             var user = await db.Hero.Where(u => u.UserId == Program.iUser.Id).ToListAsync();
 
-            foreach (var hero in user)
+            if (user != null)
             {
-                if (hero.ActiveHero)
+                foreach (var hero in user)
                 {
-                    var titles = db.Title.Where(t => t.HeroId == hero.Id).ToList();
+                    if (hero.ActiveHero)
+                    {
+                        var titles = db.Title.Where(t => t.HeroId == hero.Id).ToList();
 
-                    if (hero.OrcSlain >= 500)
-                    {
-                        AddingTitle("Orc");
-                    }
-                    if (hero.ElfSlain >= 500)
-                    {
-                        AddingTitle("Elf");
-                    }
-                    if (hero.GhostSlain >= 500)
-                    {
-                        AddingTitle("Ghost");
+                        if (hero.OrcSlain >= 500)
+                        {
+                            AddingTitle("Orc");
+                        }
+                        if (hero.ElfSlain >= 500)
+                        {
+                            AddingTitle("Elf");
+                        }
+                        if (hero.GhostSlain >= 500)
+                        {
+                            AddingTitle("Ghost");
+                        }
                     }
                 }
             }

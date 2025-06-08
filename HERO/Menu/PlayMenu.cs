@@ -32,7 +32,7 @@ internal class PlayMenu
 
         while (spel)
         {
-            Menu.LookingTitle(); // Till för att kolla om man dödat tillräcklig för att uppnå Titlar
+            await Menu.LookingTitle(); // Till för att kolla om man dödat tillräcklig för att uppnå Titlar
             using (var db = new MyDbContext())
             {
                 var heroStat = db.Hero.Where(h => h.UserId == Program.iUser.Id && h.ActiveHero).SingleOrDefault();
