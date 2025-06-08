@@ -34,6 +34,7 @@ internal class PlayMenu
         {
             Menu.LookingTitle(); // Till för att kolla om man dödat tillräcklig för att uppnå Titlar
             Level.LevelUpStats();
+            Level.LevelStatIncrease();
 
             Console.Clear();
             Console.WriteLine();

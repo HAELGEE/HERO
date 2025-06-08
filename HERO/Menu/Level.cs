@@ -1,6 +1,7 @@
 ﻿using HERO.Models;
 using HERO.Stuff;
 using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -129,6 +130,8 @@ internal class Level
                                 }
                             }
                         }
+                        LevelStatIncrease();
+                        db.SaveChanges();
                         menu = false;
                         break;
                     }
@@ -166,6 +169,20 @@ internal class Level
                 h.Charm++;
                 Thread.Sleep(1000);
             }
+        }
+    }
+
+    public static void LevelStatIncrease()
+    {
+        using (var db = new MyDbContext())
+        {
+            var hero = db.Hero.Where(h => h.UserId == Program.iUser.Id && h.ActiveHero == true).FirstOrDefault();
+
+            hero!.MaxHealth = 50 + (hero.Strength * 5) + (hero.Stamina * 3);
+            hero.Speed = 5 + (hero.Agility * 1);
+            hero.CurrentHealth = hero.MaxHealth;
+            hero.BaseDamage = Convert.ToInt32(hero.BaseDamage + (hero.Strength * 1.5) + (hero.Agility * 1.5));
+            db.SaveChanges();
         }
     }
 }

@@ -86,5 +86,6 @@ internal class Hero
         Speed = 5 + (Agility * 2);
         CurrentHealth = MaxHealth;
         BaseDamage = Convert.ToInt32(BaseDamage + (Strength * 1.5) + (Agility * 1.5));
-    }
+    }  
+
 }
