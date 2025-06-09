@@ -513,7 +513,10 @@ public class Menu
 
             Console.WriteLine(TextCenter.CenterTexts("==========================================================="));
             Console.WriteLine(TextCenter.CenterTexts($"Ditt namn på din Hero: {hero!.Username}\n"));
-            Console.WriteLine(TextCenter.CenterTexts($"Titel: {hero.Title}\n"));
+            if (hero.Title == null || hero.Title == "")
+                Console.WriteLine(TextCenter.CenterTexts($"Titel: Ingen för tillfället\n"));
+            else
+                Console.WriteLine(TextCenter.CenterTexts($"Titel: {hero.Title}\n"));
             Console.WriteLine(TextCenter.CenterTexts("Din Hero är på Level: " + hero.Level));
             Console.WriteLine(TextCenter.CenterTexts($"Din Hero har: {hero.CurrentXP}xp"));
             Console.WriteLine(TextCenter.CenterTexts($"Din Hero har: {hero.MaxXP - hero.CurrentXP}xp kvar till nästa level\n"));
@@ -521,12 +524,12 @@ public class Menu
             Console.Write(TextCenter.CenterHpText($"HP: "));
 
             if (hero.CurrentHealth < hero.MaxHealth)
-                Stuff.Color.ChangeColor(hero.CurrentHealth, "Red");
+                Color.ChangeColor(hero.CurrentHealth, "Red");
             else
-                Stuff.Color.ChangeColor(hero.CurrentHealth, "Green");
+                Color.ChangeColor(hero.CurrentHealth, "Green");
             Console.ResetColor();
             Console.Write(" av ");
-            Stuff.Color.ChangeColor(hero.MaxHealth, "Green");
+            Color.ChangeColor(hero.MaxHealth, "Green");
             Console.WriteLine();
             Console.WriteLine(TextCenter.CenterTexts("Styrka: " + hero.Strength));
             Console.WriteLine(TextCenter.CenterTexts("Agility: " + hero.Agility));
