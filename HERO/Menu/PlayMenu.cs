@@ -16,13 +16,13 @@ internal class PlayMenu
     public static async Task GamePlay()
     {
         string[] menuChoice = {
-            "Kolla Status på din hjälte",
+            "Kolla Status på din Hero",
             "Roama runt och Attackera mobs",
             "Titlar",
             "Utrustade föremål",
             "Kolla hittade föremål",
             "Öppna Shopen",
-            "Meditera (Heala din hjälte)",
+            "Meditera (Heala din Hero)",
             "Dungeons",
             "Bakåt"
             };

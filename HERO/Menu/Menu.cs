@@ -169,7 +169,7 @@ public class Menu
                         var titles = db.Title.Where(t => t.HeroId == h.Id).ToList();
 
                         Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n");
-                        if (titles != null)
+                        if (titles != null && titles.Count > 0)
                         {
                             int menuSelecter = 0;
                             bool menu2 = true;

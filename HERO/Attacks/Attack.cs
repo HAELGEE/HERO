@@ -129,12 +129,14 @@ internal class Attack
                         hero!.Turn = false;
                         db.SaveChanges();
                     }
+
                     if (hero.CurrentHealth > 0 || enemy.CurrentHealth > 0)
                     {
                         Color.ChangeColorNewLineTextCenter2($"    Hero: ", $"{hero!.CurrentHealth}", "Green", " - Fiende: ", $"{enemy.CurrentHealth}    ", "Red");
                         Console.SetCursorPosition(0, height);
                     }
-                    else if (hero.CurrentHealth <= 0 || enemy.CurrentHealth <= 0)
+
+                    if (hero.CurrentHealth <= 0 || enemy.CurrentHealth <= 0)
                     {
                          
                         hero!.TotalSpeed = 0;
