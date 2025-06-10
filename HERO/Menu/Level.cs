@@ -184,6 +184,7 @@ internal class Level
             hero.Speed = 5 + (hero.Agility * 1);
             hero.CurrentHealth = hero.MaxHealth;
             hero.BaseDamage = Convert.ToInt32(hero.StartDamage + (hero.Strength * 1.5) + (hero.Agility * 1.5));
+            hero.Armor = Convert.ToInt32((hero.Strength * 0.5f) + (hero.Stamina * 0.25f)); //+ EquipmentArmor
             db.SaveChanges();
         }
     }

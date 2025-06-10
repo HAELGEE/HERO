@@ -48,7 +48,7 @@ internal class Hero
     public int StartDamage { get; set; } = 13;
     public double? BaseDamage { get; set; } = 13;
     public int? Damage { get; set; } = 0;
-    public int? Armor { get; set; } = 2;
+    public int? Armor { get; set; }
     public int? Strength { get; set; } = 2;
     public int? Intelligence { get; set; } = 2;
     public int? Agility { get; set; } = 2;
@@ -90,6 +90,7 @@ internal class Hero
             Speed = 5 + (Agility * 1);
             CurrentHealth = MaxHealth;
             BaseDamage = Convert.ToInt32(StartDamage + (Strength * 1.5) + (Agility * 1.5));
+            Armor = Convert.ToInt32((Strength * 0.5f) + (Stamina * 0.25f)); //+ EquipmentArmor
             db.SaveChanges();
         }
     }
