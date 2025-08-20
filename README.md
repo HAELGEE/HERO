@@ -1,0 +1,1 @@
+Håller på att bygga ett turnbased spel i consollen där man som spelare är en HERO som utvecklas med tiden och när man ökar i Nivå även kan gå in och besegra grottor(dungeons) för att få loot som man kan equipa
