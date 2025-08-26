@@ -33,6 +33,7 @@ internal class Admin
                     {
                         case 1:
                             Entity.GettingAllUsers();
+                            Console.ReadKey();
                             break;
                     }
                 }
