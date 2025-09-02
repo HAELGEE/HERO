@@ -77,6 +77,16 @@ internal class Hero
     public string? Title { get; set; }
     public int? Gold { get; set; } = 0;
 
+    // Gear Equipment
+    public string Head { get; set; }
+    public string Cheast { get; set; }
+    public string Legs { get; set; }
+    public string Weapon { get; set; }
+    public string Hands { get; set; }
+    public string Feet { get; set; }
+
+
+
     // Hero Titles
     public int? OrcSlain { get; set; } = 0;
     public int? ElfSlain { get; set; } = 0;
