@@ -13,6 +13,13 @@ internal class Create
 {
     public static void CreateUser()
     {
+        string one = "";
+        string two = "";
+        string three = "";
+        string four = "";
+        string back = "B för att backa";
+        string errorMessage = "";
+
         while (true)
         {
             using (var db = new MyDbContext())
@@ -25,21 +32,30 @@ internal class Create
                 string password2 = "";
                 //int height = 0;
 
-                Console.WriteLine("\n\n\n\n\n\n\n");
-
-                Console.WriteLine(TextCenter.CenterTexts("B för att backa"));
+                //Console.WriteLine("\n\n\n\n\n\n\n");
 
                 while (true)
                 {
+                    Console.Clear();
+                    Console.WriteLine("\n\n\n\n\n\n\n");
+                    Console.WriteLine(TextCenter.CenterTexts(back));
+                    Console.WriteLine();
+                    Console.WriteLine(TextCenter.CenterTexts(errorMessage));
+                    Console.WriteLine();
+
                     //height += 2;
                     Console.Write(TextCenter.CenterTexts("Förnamn: "));
                     //Console.SetCursorPosition((Console.WindowWidth - 3) / 2, height);
                     firstName = Console.ReadLine()!;
                     if (!string.IsNullOrWhiteSpace(firstName) || firstName.ToLower() == "b")
+                    {
+                        one = "Förnamn: " + firstName;
+                        errorMessage = "";
                         break;
+                    }
                     else
                     {
-                        Console.WriteLine(TextCenter.CenterTexts("Kan inte vara tomt"));
+                        errorMessage = "Kan inte vara tomt";
                         //height += 1;
                     }
                 }
@@ -48,16 +64,31 @@ internal class Create
 
                 while (true)
                 {
+                    if (!string.IsNullOrWhiteSpace(errorMessage))
+                    {
+                        Console.WriteLine("\n\n\n\n\n\n\n");
+                        Console.WriteLine(TextCenter.CenterTexts(back));
+                        Console.WriteLine();
+                        Console.WriteLine(TextCenter.CenterTexts(errorMessage));
+                        Console.WriteLine();
+                        Console.WriteLine(TextCenter.CenterTexts(one));
+                    }
+
                     //height += 2;
                     Console.Write(TextCenter.CenterTexts("Efternamn: "));
                     //Console.SetCursorPosition((Console.WindowWidth - 2) / 2, height);
                     lastName = Console.ReadLine()!;
                     if (!string.IsNullOrWhiteSpace(lastName) || lastName.ToLower() == "b")
+                    {
+                        two = "Efternamn: " + lastName;
+                        errorMessage = "";
                         break;
+                    }
                     else
                     {
                         //height += 1;
-                        Console.WriteLine(TextCenter.CenterTexts("Kan inte vara tomt"));
+                        errorMessage = "Kan inte vara tomt";
+                        Console.Clear();
                     }
                 }
                 if (lastName.ToLower() == "b")
@@ -65,6 +96,16 @@ internal class Create
 
                 while (true)
                 {
+                    if (!string.IsNullOrWhiteSpace(errorMessage))
+                    {
+                        Console.WriteLine("\n\n\n\n\n\n\n");
+                        Console.WriteLine(TextCenter.CenterTexts(back));
+                        Console.WriteLine();
+                        Console.WriteLine(TextCenter.CenterTexts(errorMessage));
+                        Console.WriteLine();
+                        Console.WriteLine(TextCenter.CenterTexts(one));
+                        Console.WriteLine(TextCenter.CenterTexts(two));
+                    }
                     //height += 2;
                     Console.Write(TextCenter.CenterTexts("Email: "));
                     //Console.SetCursorPosition((Console.WindowWidth - 12) / 2, height);
@@ -72,15 +113,22 @@ internal class Create
 
                     var user = db.User.Where(u => u.Email == email).FirstOrDefaultAsync();
 
-                    if(user != null)
-                        Console.WriteLine(TextCenter.CenterTexts("Finns redan en användare med det Email"));
+                    if (user != null)
+                    {
+                        errorMessage = "Finns redan en användare med det Email";
+                        Console.Clear();
+                    }
                     else if (!string.IsNullOrWhiteSpace(email) || email.ToLower() == "b")
+                    {
+                        three = "Email: " + email;
+                        errorMessage = "";
                         break;
-
+                    }
                     else
                     {
                         //height += 1;
-                        Console.WriteLine(TextCenter.CenterTexts("Kan inte vara tomt"));
+                        errorMessage = "Kan inte vara tomt";
+                        Console.Clear();
                     }
 
                 }
@@ -89,17 +137,33 @@ internal class Create
 
                 while (true)
                 {
+                    if (!string.IsNullOrWhiteSpace(errorMessage))
+                    {
+                        Console.WriteLine("\n\n\n\n\n\n\n");
+                        Console.WriteLine(TextCenter.CenterTexts(back));
+                        Console.WriteLine();
+                        Console.WriteLine(TextCenter.CenterTexts(errorMessage));
+                        Console.WriteLine();
+                        Console.WriteLine(TextCenter.CenterTexts(one));
+                        Console.WriteLine(TextCenter.CenterTexts(two));
+                        Console.WriteLine(TextCenter.CenterTexts(three));
+                    }
                     //height += 2;
                     Console.Write(TextCenter.CenterTexts("Lösenord: "));
                     //Console.SetCursorPosition((Console.WindowWidth - 8) / 2, height);
                     password = Console.ReadLine()!;
 
                     if (!string.IsNullOrWhiteSpace(password) || password.ToLower() == "b")
+                    {
+                        four = "Lösenord: " + password;
+                        errorMessage = "";
                         break;
+                    }
                     else
                     {
                         //height += 1;
-                        Console.WriteLine(TextCenter.CenterTexts("Kan inte vara tomt"));
+                        errorMessage = "Kan inte vara tomt";
+                        Console.Clear();
                     }
                 }
                 if (password.ToLower() == "b")
@@ -107,6 +171,18 @@ internal class Create
 
                 while (true)
                 {
+                    if (!string.IsNullOrWhiteSpace(errorMessage))
+                    {
+                        Console.WriteLine("\n\n\n\n\n\n\n");
+                        Console.WriteLine(TextCenter.CenterTexts(back));
+                        Console.WriteLine();
+                        Console.WriteLine(TextCenter.CenterTexts(errorMessage));
+                        Console.WriteLine();
+                        Console.WriteLine(TextCenter.CenterTexts(one));
+                        Console.WriteLine(TextCenter.CenterTexts(two));
+                        Console.WriteLine(TextCenter.CenterTexts(three));
+                        Console.WriteLine(TextCenter.CenterTexts(four));
+                    }
                     //height += 2;
                     Console.Write(TextCenter.CenterTexts("Lösenord igen: "));
                     //Console.SetCursorPosition((Console.WindowWidth - 8) / 2, height);
@@ -118,12 +194,13 @@ internal class Create
                         if (!string.IsNullOrWhiteSpace(password) || password2.ToLower() == "b")
                             break;
                         else
-                            Console.WriteLine(TextCenter.CenterTexts("Kan inte vara tomt"));
+                            errorMessage = "Kan inte vara tomt";
                     }
                     else
                     {
                         //height += 1;
-                        Console.WriteLine(TextCenter.CenterTexts("Du angav inte samma lösenord, fösök igen!"));
+                        errorMessage = "Du angav inte samma lösenord, fösök igen!";
+                        Console.Clear();
                     }
                 }
                 if (password2.ToLower() == "b")
@@ -181,7 +258,7 @@ internal class Create
     //{
     //    using (var db = new MyDbContext())
     //    {
-            
+
     //    }
     //}
     //public static void CreateEnemies()
