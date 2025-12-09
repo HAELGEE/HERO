@@ -4,11 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HERO.Menu;
-internal class Save
+namespace HERO.Database_Stuff.Interfaces;
+internal class Repository
 {
-    public static void SavingHero()
-    {
-
-    }
 }

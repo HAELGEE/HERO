@@ -1,5 +1,6 @@
 ﻿using HERO.Models;
 using HERO.Stuff;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,13 +69,20 @@ internal class Create
                     Console.Write(TextCenter.CenterTexts("Email: "));
                     //Console.SetCursorPosition((Console.WindowWidth - 12) / 2, height);
                     email = Console.ReadLine()!;
-                    if (!string.IsNullOrWhiteSpace(email) || email.ToLower() == "b")
+
+                    var user = db.User.Where(u => u.Email == email).FirstOrDefaultAsync();
+
+                    if(user != null)
+                        Console.WriteLine(TextCenter.CenterTexts("Finns redan en användare med det Email"));
+                    else if (!string.IsNullOrWhiteSpace(email) || email.ToLower() == "b")
                         break;
+
                     else
                     {
                         //height += 1;
                         Console.WriteLine(TextCenter.CenterTexts("Kan inte vara tomt"));
                     }
+
                 }
                 if (email.ToLower() == "b")
                     break;
