@@ -49,9 +49,7 @@ internal class Login
                 }
                 if (loginEmail.ToLower() == "b")
                     break;
-
-                
-
+                                
                 var user = db.User.Where(u => u.Email == loginEmail)
                     .Select(u => new
                     {
@@ -62,8 +60,7 @@ internal class Login
                     .SingleOrDefault();
 
                 if (!string.IsNullOrWhiteSpace(loginEmail) && user != null)
-                {
-                    
+                {                    
                     Color.ChangeColor(TextCenter.CenterLoginMenu("Ange lösenord: "), "DarkCyan");
                     TextCenter.CenterLoginMenu("");
                     string loginPassword = Console.ReadLine()!;

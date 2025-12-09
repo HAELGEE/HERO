@@ -40,7 +40,7 @@ internal class Create
                     Console.WriteLine("\n\n\n\n\n\n\n");
                     Console.WriteLine(TextCenter.CenterTexts(back));
                     Console.WriteLine();
-                    Console.WriteLine(TextCenter.CenterTexts(errorMessage));
+                    Color.ChangeColorNewLine(TextCenter.CenterTexts(errorMessage), "Red");
                     Console.WriteLine();
 
                     //height += 2;
@@ -69,7 +69,7 @@ internal class Create
                         Console.WriteLine("\n\n\n\n\n\n\n");
                         Console.WriteLine(TextCenter.CenterTexts(back));
                         Console.WriteLine();
-                        Console.WriteLine(TextCenter.CenterTexts(errorMessage));
+                        Color.ChangeColorNewLine(TextCenter.CenterTexts(errorMessage), "Red");
                         Console.WriteLine();
                         Console.WriteLine(TextCenter.CenterTexts(one));
                     }
@@ -101,7 +101,7 @@ internal class Create
                         Console.WriteLine("\n\n\n\n\n\n\n");
                         Console.WriteLine(TextCenter.CenterTexts(back));
                         Console.WriteLine();
-                        Console.WriteLine(TextCenter.CenterTexts(errorMessage));
+                        Color.ChangeColorNewLine(TextCenter.CenterTexts(errorMessage), "Red");
                         Console.WriteLine();
                         Console.WriteLine(TextCenter.CenterTexts(one));
                         Console.WriteLine(TextCenter.CenterTexts(two));
@@ -113,12 +113,15 @@ internal class Create
 
                     var user = db.User.Where(u => u.Email == email).FirstOrDefaultAsync();
 
+                    if (email.ToLower() == "b")                    
+                       break;                    
+
                     if (user != null)
                     {
                         errorMessage = "Finns redan en användare med det Email";
                         Console.Clear();
                     }
-                    else if (!string.IsNullOrWhiteSpace(email) || email.ToLower() == "b")
+                    else if (!string.IsNullOrWhiteSpace(email))
                     {
                         three = "Email: " + email;
                         errorMessage = "";
@@ -142,7 +145,7 @@ internal class Create
                         Console.WriteLine("\n\n\n\n\n\n\n");
                         Console.WriteLine(TextCenter.CenterTexts(back));
                         Console.WriteLine();
-                        Console.WriteLine(TextCenter.CenterTexts(errorMessage));
+                        Color.ChangeColorNewLine(TextCenter.CenterTexts(errorMessage), "Red");
                         Console.WriteLine();
                         Console.WriteLine(TextCenter.CenterTexts(one));
                         Console.WriteLine(TextCenter.CenterTexts(two));
@@ -176,7 +179,7 @@ internal class Create
                         Console.WriteLine("\n\n\n\n\n\n\n");
                         Console.WriteLine(TextCenter.CenterTexts(back));
                         Console.WriteLine();
-                        Console.WriteLine(TextCenter.CenterTexts(errorMessage));
+                        Color.ChangeColorNewLine(TextCenter.CenterTexts(errorMessage), "Red");
                         Console.WriteLine();
                         Console.WriteLine(TextCenter.CenterTexts(one));
                         Console.WriteLine(TextCenter.CenterTexts(two));
