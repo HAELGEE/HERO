@@ -16,6 +16,9 @@ internal class Login
     {
         string errorMessage = "";
         bool isLoggedIn = false;
+
+        string username = "";
+
         using (var db = new MyDbContext())
         {
             do
@@ -28,12 +31,26 @@ internal class Login
 
                 Color.ChangeColor(TextCenter.CenterMenu("Type 'B' to back"), "Red");
                 Console.WriteLine("\n");
+                string loginEmail = "";
 
-                Color.ChangeColor(TextCenter.CenterLoginMenu("Ange Email: "), "DarkCyan");
-                string loginEmail = TextCenter.CenterLoginMenu(Console.ReadLine()!);
-
+                if (string.IsNullOrWhiteSpace(username))
+                {
+                    Color.ChangeColor(TextCenter.CenterLoginMenu("Ange Email: "), "DarkCyan");
+                    TextCenter.CenterLoginMenu("");
+                    loginEmail = Console.ReadLine()!;
+                    username = loginEmail;
+                }
+                else
+                {
+                    Color.ChangeColor(TextCenter.CenterLoginMenu("Email: "), "DarkCyan");
+                    Console.Write(username);
+                    Console.WriteLine();
+                    loginEmail = username;
+                }
                 if (loginEmail.ToLower() == "b")
                     break;
+
+                
 
                 var user = db.User.Where(u => u.Email == loginEmail)
                     .Select(u => new
@@ -48,7 +65,8 @@ internal class Login
                 {
                     
                     Color.ChangeColor(TextCenter.CenterLoginMenu("Ange lösenord: "), "DarkCyan");
-                    string loginPassword = TextCenter.CenterLoginMenu(Console.ReadLine()!);
+                    TextCenter.CenterLoginMenu("");
+                    string loginPassword = Console.ReadLine()!;
 
                     if (loginPassword.ToLower() == "b")
                         break;
@@ -107,7 +125,6 @@ internal class Login
                         errorMessage = "Fel lösenord, försök igen";
                     }
                 }
-
                 else
                 {
                     errorMessage = "Inget konto hittades med den mailadressen";
