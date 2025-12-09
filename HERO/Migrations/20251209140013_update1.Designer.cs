@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HERO.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20250609053227_First")]
-    partial class First
+    [Migration("20251209140013_update1")]
+    partial class update1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,6 +43,9 @@ namespace HERO.Migrations
 
                     b.Property<int?>("Damage")
                         .HasColumnType("int");
+
+                    b.Property<string>("GearSlot")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("HeroId")
                         .HasColumnType("int");
@@ -223,6 +226,9 @@ namespace HERO.Migrations
                     b.Property<int?>("Charm")
                         .HasColumnType("int");
 
+                    b.Property<string>("Chest")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("CurrentHealth")
                         .HasColumnType("int");
 
@@ -235,14 +241,26 @@ namespace HERO.Migrations
                     b.Property<int?>("ElfSlain")
                         .HasColumnType("int");
 
+                    b.Property<string>("Feet")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("GhostSlain")
                         .HasColumnType("int");
 
                     b.Property<int?>("Gold")
                         .HasColumnType("int");
 
+                    b.Property<string>("Hands")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Head")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("Intelligence")
                         .HasColumnType("int");
+
+                    b.Property<string>("Legs")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Level")
                         .HasColumnType("int");
@@ -294,6 +312,9 @@ namespace HERO.Migrations
 
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Weapon")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

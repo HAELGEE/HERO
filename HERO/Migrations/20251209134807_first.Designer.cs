@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HERO.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20250908073712_second")]
-    partial class second
+    [Migration("20251209134807_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -226,7 +226,7 @@ namespace HERO.Migrations
                     b.Property<int?>("Charm")
                         .HasColumnType("int");
 
-                    b.Property<string>("Cheast")
+                    b.Property<string>("Chest")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

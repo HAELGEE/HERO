@@ -5,7 +5,7 @@
 namespace HERO.Migrations
 {
     /// <inheritdoc />
-    public partial class First : Migration
+    public partial class first : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -96,6 +96,12 @@ namespace HERO.Migrations
                     Lifesteal = table.Column<int>(type: "int", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gold = table.Column<int>(type: "int", nullable: true),
+                    Head = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Chest = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Legs = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Weapon = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Hands = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Feet = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OrcSlain = table.Column<int>(type: "int", nullable: true),
                     ElfSlain = table.Column<int>(type: "int", nullable: true),
                     GhostSlain = table.Column<int>(type: "int", nullable: true)
@@ -128,7 +134,8 @@ namespace HERO.Migrations
                     Stamina = table.Column<int>(type: "int", nullable: true),
                     Charm = table.Column<int>(type: "int", nullable: true),
                     Resistance = table.Column<int>(type: "int", nullable: true),
-                    Lifesteal = table.Column<int>(type: "int", nullable: true)
+                    Lifesteal = table.Column<int>(type: "int", nullable: true),
+                    GearSlot = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

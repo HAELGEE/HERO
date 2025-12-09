@@ -78,12 +78,12 @@ internal class Hero
     public int? Gold { get; set; } = 0;
 
     // Gear Equipment
-    public string Head { get; set; }
-    public string Cheast { get; set; }
-    public string Legs { get; set; }
-    public string Weapon { get; set; }
-    public string Hands { get; set; }
-    public string Feet { get; set; }
+    public string? Head { get; set; }
+    public string? Chest { get; set; }
+    public string? Legs { get; set; }
+    public string? Weapon { get; set; }
+    public string? Hands { get; set; }
+    public string? Feet { get; set; }
 
 
 

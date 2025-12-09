@@ -223,8 +223,7 @@ namespace HERO.Migrations
                     b.Property<int?>("Charm")
                         .HasColumnType("int");
 
-                    b.Property<string>("Cheast")
-                        .IsRequired()
+                    b.Property<string>("Chest")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("CurrentHealth")
@@ -240,7 +239,6 @@ namespace HERO.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Feet")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("GhostSlain")
@@ -250,18 +248,15 @@ namespace HERO.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Hands")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Head")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Intelligence")
                         .HasColumnType("int");
 
                     b.Property<string>("Legs")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Level")
@@ -316,7 +311,6 @@ namespace HERO.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Weapon")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

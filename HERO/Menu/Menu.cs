@@ -512,7 +512,7 @@ public class Menu
             Console.WriteLine("\n\n\n");
 
             Console.WriteLine(TextCenter.CenterTexts("==========================================================="));
-            Console.WriteLine(TextCenter.CenterTexts($"Ditt namn på din Hero: {hero!.Username}\n"));
+            Console.WriteLine(TextCenter.CenterTexts($"Hero namn: {hero!.Username}\n"));
             if (hero.Title == null || hero.Title == "")
                 Console.WriteLine(TextCenter.CenterTexts($"Titel: Ingen för tillfället\n"));
             else

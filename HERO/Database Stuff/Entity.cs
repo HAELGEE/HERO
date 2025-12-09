@@ -23,6 +23,15 @@ internal class Entity
         }
     }
 
+    public static User GettingUserWithEmail(string inputEmail)
+    {
+        using (var db = new MyDbContext())
+        {
+            var allUsers = db.User.Where(u => u.Email == inputEmail).SingleOrDefault();
+            return allUsers;
+        }
+    }
+
     public static bool LookingIfHeroExist(string input)
     {
         using (var db = new MyDbContext())

@@ -1,4 +1,5 @@
-﻿using HERO.Models;
+﻿using HERO.Database_Stuff;
+using HERO.Models;
 using HERO.Stuff;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -109,9 +110,9 @@ internal class Create
                     //height += 2;
                     Console.Write(TextCenter.CenterTexts("Email: "));
                     //Console.SetCursorPosition((Console.WindowWidth - 12) / 2, height);
-                    email = Console.ReadLine()!;
+                    email = Console.ReadLine()!;                    
 
-                    var user = db.User.Where(u => u.Email == email).FirstOrDefaultAsync();
+                    var user = Entity.GettingUserWithEmail(email);
 
                     if (email.ToLower() == "b")                    
                        break;                    
