@@ -4,7 +4,7 @@ Bygg vidare
 
 
 1.	Fixa så Titlar fungerar vid Attacker Samt fixa så att Användaren får en varning om att inga titlar finns
-när man inte har några titlar.!
+	när man inte har några titlar.!
 
 2.	Fixa in motståndare. Huvdras = Orc, Elf, Ghost
 
@@ -23,3 +23,6 @@ när man inte har några titlar.!
 
 3.	Healing. Skall det vara 10 liv per tick? Kanske mer efter viss level/hp ? Kanske stegra beroende på hp? 
 	Typ om man har 200hp healar 20hp per tick och 300 ger 30/tick
+
+4.	Implentera in spells? Kategorier av typ Ice/Fire/Wind/Earth/Shadow osv? Och där under finns det massor av olika spells. Samt att man kan 
+	Gå upp i level med sin kategori beroende på hur mycket man använder sig utav spells och om man lykas döda motståndare med den.
