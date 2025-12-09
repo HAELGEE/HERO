@@ -33,19 +33,21 @@ internal class Login
                 Console.WriteLine("\n");
                 string loginEmail = "";
 
-                if (string.IsNullOrWhiteSpace(username))
-                {
-                    Color.ChangeColor(TextCenter.CenterLoginMenu("Ange Email: "), "DarkCyan");
-                    TextCenter.CenterLoginMenu("");
-                    loginEmail = Console.ReadLine()!;
-                    username = loginEmail;
-                }
-                else
+                if (!string.IsNullOrWhiteSpace(username))
                 {
                     Color.ChangeColor(TextCenter.CenterLoginMenu("Email: "), "DarkCyan");
                     Console.Write(username);
                     Console.WriteLine();
                     loginEmail = username;
+                    username = "";
+                }
+
+                if(string.IsNullOrWhiteSpace(loginEmail))
+                {
+                    Color.ChangeColor(TextCenter.CenterLoginMenu("Ange Email: "), "DarkCyan");
+                    TextCenter.CenterLoginMenu("");
+                    loginEmail = Console.ReadLine()!;
+                    username = loginEmail;
                 }
                 if (loginEmail.ToLower() == "b")
                     break;
