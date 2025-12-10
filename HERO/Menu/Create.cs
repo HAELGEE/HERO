@@ -155,7 +155,7 @@ internal class Create
                     //height += 2;
                     Console.Write(TextCenter.CenterTexts("Lösenord: "));
                     //Console.SetCursorPosition((Console.WindowWidth - 8) / 2, height);
-                    password = Console.ReadLine()!;
+                    password = ReadHiddenInput();
 
                     if (!string.IsNullOrWhiteSpace(password) || password.ToLower() == "b")
                     {
@@ -170,6 +170,7 @@ internal class Create
                         Console.Clear();
                     }
                 }
+                Console.WriteLine();
                 if (password.ToLower() == "b")
                     break;
 
@@ -185,12 +186,17 @@ internal class Create
                         Console.WriteLine(TextCenter.CenterTexts(one));
                         Console.WriteLine(TextCenter.CenterTexts(two));
                         Console.WriteLine(TextCenter.CenterTexts(three));
-                        Console.WriteLine(TextCenter.CenterTexts(four));
+                        var hiddenPassword = "Lösenord: ";
+                        for (int i = 0; i < password.Length; i++)
+                        {
+                            hiddenPassword += "*";
+                        }
+                        Console.WriteLine(TextCenter.CenterTexts(hiddenPassword));
                     }
                     //height += 2;
                     Console.Write(TextCenter.CenterTexts("Lösenord igen: "));
                     //Console.SetCursorPosition((Console.WindowWidth - 8) / 2, height);
-                    password2 = Console.ReadLine()!;
+                    password2 = ReadHiddenInput();
 
                     if (password == password2 || password2.ToLower() == "b")
                     {
@@ -218,6 +224,23 @@ internal class Create
                 break;
             }
         }
+    }
+    static string ReadHiddenInput()
+    {
+        string input = "";
+        ConsoleKeyInfo keyInfo;
+
+        do
+        {
+            keyInfo = Console.ReadKey(intercept: true);
+            if (keyInfo.Key != ConsoleKey.Enter)
+            {
+                input += keyInfo.KeyChar;
+            }
+        }
+        while (keyInfo.Key != ConsoleKey.Enter);
+
+        return input;
     }
 
     public static void CreateHero()
