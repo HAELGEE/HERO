@@ -32,18 +32,24 @@ internal class Load
                         Console.Clear();
                         List<Action> menuActions = new List<Action>();
                         List<string> menuChoice = new List<string>();
+                        List<string> heroSelected = new List<string>();
 
                         foreach (var hero in heros)
                         {
                             var text = $"{hero.Username!} Level:{hero.Level}";
                             // Denna är till så att pilen i CMD hamnar på rätt ställe hela tiden (inte skiftar nära till långt bort)
-                            if (text.Length < 14)
+                            if (text.Length < 10)
+                                text = "   " + text + "   ";
+                            else if (text.Length < 12)
+                                text = "  " + text + "  ";
+                            else if (text.Length < 14)
                                 text = " " + text + " ";
 
                             menuChoice.Add(text);
+                            heroSelected.Add(hero.Username!);
                             menuActions.Add(() => Console.WriteLine(TextCenter.CenterTexts(hero.Username!)));
                         }
-                        menuChoice.Add("Bakåt");
+                        menuChoice.Add("      Bakåt      ");
                         menuActions.Add(() => menu2 = false);
 
                         Console.WriteLine("\n\n\n\n\n" + TextCenter.CenterTexts("Vilken Hero vill du välja?"));
@@ -79,9 +85,7 @@ internal class Load
                                 Console.Clear();
                                 if (!string.IsNullOrWhiteSpace(menuChoice[menuSelecter]))
                                 {
-                                    
-
-                                    var currentHero = db.Hero.Where(h => h.UserId == Program.iUser.Id && h.Username == menuChoice[menuSelecter]).ToList().SingleOrDefault();
+                                    var currentHero = db.Hero.Where(h => h.UserId == Program.iUser.Id && h.Username == heroSelected[menuSelecter]).ToList().SingleOrDefault();
 
                                     if (currentHero != null)
                                     {
@@ -152,6 +156,6 @@ internal class Load
                 //    }
                 //}
             }
-        }        
+        }
     }
 }
