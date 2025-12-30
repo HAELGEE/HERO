@@ -36,7 +36,7 @@ internal class Load
                         foreach (var hero in heros)
                         {
                             var text = $"{hero.Username!} Level:{hero.Level}";
-                            // Få så att bilen i CMD hamnar på rätt ställe hela tiden
+                            // Denna är till så att pilen i CMD hamnar på rätt ställe hela tiden (inte skiftar nära till långt bort)
                             if (text.Length < 14)
                                 text = " " + text + " ";
 
