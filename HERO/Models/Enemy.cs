@@ -215,7 +215,7 @@ internal class Grunt : Orc // TANK
     public Grunt()
     {
         Class = "Tank";
-        Name = $"Grunt - {Menu.Menu.OrcName()}";
+        Name = $"Grunt - {EnemyStuff.Name.OrcName()}";
 
         TankBaseStats();
         RaceStatIncrease();
@@ -228,7 +228,7 @@ internal class Shaman : Orc // Healer
     public Shaman()
     {
         Class = "Healer";
-        Name = $"Shaman - {Menu.Menu.OrcName()}";
+        Name = $"Shaman - {EnemyStuff.Name.OrcName()}";
 
         HealerBaseStats();
         RaceStatIncrease();
@@ -240,7 +240,7 @@ internal class Goblin : Orc // DPS
     public Goblin()
     {
         Class = "Dps";
-        Name = $"Goblin - {Menu.Menu.OrcName()}";
+        Name = $"Goblin - {EnemyStuff.Name.OrcName()}";
 
         DpsBaseStats();
         RaceStatIncrease();
@@ -273,7 +273,7 @@ internal class Tharion : Elf // TANK
     public Tharion()
     {
         Class = "Tank";
-        Name = $"Tharion - {Menu.Menu.ElfName()}";
+        Name = $"Tharion - {EnemyStuff.Name.ElfName()}";
 
         TankBaseStats();
         RaceStatIncrease();
@@ -286,7 +286,7 @@ internal class Elowen : Elf // Healer
     public Elowen()
     {
         Class = "Healer";
-        Name = $"Elowen - {Menu.Menu.ElfName()}";
+        Name = $"Elowen - {EnemyStuff.Name.ElfName()}";
 
         HealerBaseStats();
         RaceStatIncrease();
@@ -298,7 +298,7 @@ internal class Sylvestra : Elf // DPS
     public Sylvestra()
     {
         Class = "Dps";
-        Name = $"Sylvestra - {Menu.Menu.ElfName()}";
+        Name = $"Sylvestra - {EnemyStuff.Name.ElfName()}";
 
         DpsBaseStats();
         RaceStatIncrease();
@@ -329,7 +329,7 @@ internal class Gravemourn : Ghost // TANK
     public Gravemourn()
     {
         Class = "Tank";
-        Name = $"Gravemourn - {Menu.Menu.GhostName()}";
+        Name = $"Gravemourn - {EnemyStuff.Name.GhostName()}";
 
         TankBaseStats();
         RaceStatIncrease();
@@ -342,7 +342,7 @@ internal class Hauntress : Ghost // Healer
     public Hauntress()
     {
         Class = "Healer";
-        Name = $"Hauntress - {Menu.Menu.GhostName()}";
+        Name = $"Hauntress - {EnemyStuff.Name.GhostName()}";
 
         HealerBaseStats();
         RaceStatIncrease();
@@ -354,7 +354,7 @@ internal class Wraithon : Ghost // DPS
     public Wraithon()
     {
         Class = "Dps";
-        Name = $"Wraithon - {Menu.Menu.GhostName()}";
+        Name = $"Wraithon - {EnemyStuff.Name.GhostName()}";
 
         DpsBaseStats();
         RaceStatIncrease();

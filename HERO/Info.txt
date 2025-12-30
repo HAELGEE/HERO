@@ -1,6 +1,17 @@
 
+******** Rework **********************************
 
-Bygg vidare
+1. Bygga in olika zoner för varje ras som man kan attackera
+	Namn:
+	- Echoshade <- Ghost
+	- Drakmire <- Orcs
+	- Faewood <- Elfs
+
+2. Kunna ta bort en HERO, Vid delete säkerställa att man verkligen Vill det 
+
+**************************************************
+
+******** Bygg vidare *****************************
 
 
 1.	Fixa så Titlar fungerar vid Attacker Samt fixa så att Användaren får en varning om att inga titlar finns
@@ -26,3 +37,5 @@ Bygg vidare
 
 4.	Implentera in spells? Kategorier av typ Ice/Fire/Wind/Earth/Shadow osv? Och där under finns det massor av olika spells. Samt att man kan 
 	Gå upp i level med sin kategori beroende på hur mycket man använder sig utav spells och om man lykas döda motståndare med den.
+
+**************************************************

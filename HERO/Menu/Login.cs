@@ -65,7 +65,8 @@ internal class Login
                 {                    
                     Color.ChangeColor(TextCenter.CenterLoginMenu("Ange lösenord: "), "DarkCyan");
                     TextCenter.CenterLoginMenu("");
-                    string loginPassword = Console.ReadLine()!;
+                    string loginPassword = ReadHiddenInput();
+                    Console.WriteLine();
 
                     if (loginPassword.ToLower() == "b")
                         break;
@@ -130,5 +131,22 @@ internal class Login
                 }
             } while (!string.IsNullOrWhiteSpace(errorMessage) && !isLoggedIn);
         }
+    }
+    static string ReadHiddenInput()
+    {
+        string input = "";
+        ConsoleKeyInfo keyInfo;
+
+        do
+        {
+            keyInfo = Console.ReadKey(intercept: true);
+            if (keyInfo.Key != ConsoleKey.Enter)
+            {
+                input += keyInfo.KeyChar;
+            }
+        }
+        while (keyInfo.Key != ConsoleKey.Enter);
+
+        return input;
     }
 }
